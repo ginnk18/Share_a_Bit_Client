@@ -19,6 +19,24 @@ class App extends Component {
 		);
 	}
 
+	_renderFooter() {
+		return (
+			  <div className="footer">
+    			<div className="footer-social-icons">
+    				{/*<p>© Share a Bit 2017</p>*/}
+			        <ul className="social-icons mb-0">
+			            <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+			            <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+			            <li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
+			            <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+			            <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+			            <li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+			        </ul>
+    			</div>
+  			</div>
+		);
+	}
+
 
   render() {
   	const styles = {
@@ -37,6 +55,7 @@ class App extends Component {
 	        	<Route path="/sign_in" component={SignInPage} />
 	        	<Route path="/" component={HomePage} />
 	        </Switch>
+	        {this._renderFooter()}
 	      </div>
       	</Router>
     );
