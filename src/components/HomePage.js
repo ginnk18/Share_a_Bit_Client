@@ -9,7 +9,8 @@ class HomePage extends Component {
 
 			img: {
 				width: '50%',
-				marginLeft: 'auto'
+				marginLeft: 'auto',
+				opacity: 0.85
 			},
 			header: {
 				width: '50%',
