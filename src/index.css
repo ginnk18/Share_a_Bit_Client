@@ -3,3 +3,16 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+/*NavBar Styling*/
+
+.share-navbar {
+	background-color: #8ADD9D;
+}
+
+nav a {
+	color: black;
+}
+
+/*Styling Home Page*/
+
