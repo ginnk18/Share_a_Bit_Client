@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 
 class App extends Component {
+
+	_renderNavbar() {
+		return (
+
+		);
+	}
+
+
   render() {
     return (
       <div className="App">
-        <h1>Welcome to Share a Bit</h1>
+        {this._renderNavbar()}
       </div>
     );
   }
