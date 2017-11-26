@@ -45,6 +45,10 @@ nav a {
   text-decoration: underline;
 }
 
+.campaign-item {
+  margin-top: 20px;
+}
+
 /*Styling footer */
 
 .footer {

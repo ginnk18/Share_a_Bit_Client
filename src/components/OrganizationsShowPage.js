@@ -15,7 +15,7 @@ class OrganizationsShowPage extends Component {
 		return _.map(this.props.campaigns, campaign => {
 			return (
 				<div className="col-md-6" key={campaign.id}>
-					<div className="card">
+					<div className="card campaign-item">
 						<div className="card-body">
 							<div className="card-title">{campaign.name}</div>
 							<button className="btn btn-success">Donate to this campaign</button>
