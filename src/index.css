@@ -11,8 +11,10 @@ body {
 /*NavBar Styling*/
 
 .share-navbar {
-	background-color: #8ADD9D;
-  background: linear-gradient(#8ADD9D, transparent);
+	/*background-color: #8ADD9D;*/
+  /*background: linear-gradient(#8ADD9D, transparent);*/
+  background: transparent;
+  /*border-bottom: 1px solid #1C5217;*/
 }
 
 nav a {
@@ -55,7 +57,7 @@ nav a {
     position: absolute;
     left: 0 ; right: 0; bottom: 0;
     height: 80px;
-    background-color: #8ADD9D;
+    background-color: #1C5217;
     color: white;
     padding-top:5px;
     /*background: linear-gradient(transparent, #8ADD9D);*/
@@ -102,7 +104,8 @@ nav a {
       }
 
       .social-icons a {
-          color: #8ADD9D;
+          /*color: #1C5217;*/
+          color: #17BA37;
           text-decoration: none;
       }
 
@@ -119,7 +122,7 @@ nav a {
     -moz-transition: .5s;
     -webkit-transition: .5s;
     transition: .5s;
-    background-color: #17BA37;
+    background-color: #1C5217;
 }
 
 .fa-facebook:hover {
@@ -133,7 +136,7 @@ nav a {
     -moz-transition: .5s;
     -webkit-transition: .5s;
     transition: .5s;
-    background-color: #17BA37;
+    background-color: #1C5217;
 }
 
 .fa-twitter:hover {
@@ -147,7 +150,7 @@ nav a {
        -moz-transition: .5s;
        -webkit-transition: .5s;
        transition: .5s;
-       background-color: #17BA37;
+       background-color: #1C5217;
    }
 
 
@@ -162,7 +165,7 @@ nav a {
        -moz-transition: .5s;
        -webkit-transition: .5s;
        transition: .5s;
-       background-color: #17BA37;
+       background-color: #1C5217;
    }
 
    .fa-youtube:hover {
@@ -177,7 +180,7 @@ nav a {
     -moz-transition: .5s;
     -webkit-transition: .5s;
     transition: .5s;
-    background-color: #17BA37;
+    background-color: #1C5217;
 }
 
 .fa-google-plus:hover {
@@ -191,7 +194,7 @@ nav a {
       -moz-transition: .5s;
       -webkit-transition: .5s;
       transition: .5s;
-      background-color: #17BA37;
+      background-color: #1C5217;
   }
 
   .fa-linkedin:hover {

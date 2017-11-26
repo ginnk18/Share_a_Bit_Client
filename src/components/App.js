@@ -23,6 +23,10 @@ class App extends Component {
 	}
 
 	_renderFooter() {
+		// const style = {
+		// 	backgroundImage: 'url("/images/grass-2.jpg")'
+		// }
+
 		return (
 			  <div className="footer">
     			<div className="footer-social-icons">
