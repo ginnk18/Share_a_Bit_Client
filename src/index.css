@@ -38,6 +38,13 @@ nav a {
   text-decoration: underline;
 }
 
+/*Styling Organization Show Page */
+
+.OrganizationsShowPage a {
+  color: #1C5217;
+  text-decoration: underline;
+}
+
 /*Styling footer */
 
 .footer {
