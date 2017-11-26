@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 //Pages:
 import SignInPage from './SignInPage';
 import HomePage from './HomePage';
+import OrganizationsIndexPage from './OrganizationsIndexPage';
 
 class App extends Component {
 
@@ -13,6 +14,7 @@ class App extends Component {
 			<nav className="navbar navbar-expand share-navbar">
 				<Link to="/"><i class="fa fa-globe fa-3x" aria-hidden="true"></i></Link>
 				<div className="ml-auto">
+				<Link to="/organizations">Organizations</Link>
 				<Link to="/sign_in">Sign In</Link>
 				</div>
 			</nav>
@@ -53,6 +55,7 @@ class App extends Component {
 	        {this._renderNavbar()}
 	        <Switch>
 	        	<Route path="/sign_in" component={SignInPage} />
+	        	<Route path="/organizations" component={OrganizationsIndexPage} />
 	        	<Route path="/" component={HomePage} />
 	        </Switch>
 	        {this._renderFooter()}

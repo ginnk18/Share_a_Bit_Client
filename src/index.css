@@ -1,21 +1,45 @@
 body {
   margin: 0;
-  padding: 0;
+  /*padding: 0;*/
   /*font-family: "Courier New", Courier, monospace;*/
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  /*For the footer*/
+  padding-bottom: 6rem;
+  position: relative;
+  min-height: 100vh;
 }
+
+/*body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}*/
+
+/*body {
+    min-height:100%;
+    position:relative;
+    padding-bottom: 130px;
+    margin:0;
+}*/
 
 /*NavBar Styling*/
 
 .share-navbar {
 	background-color: #8ADD9D;
-	/*opacity: 0.8;*/
+  background: linear-gradient(#8ADD9D, transparent);
 }
 
 nav a {
 	color: black;
 	font-family: Verdana, Geneva, sans-serif;
 	font-weight: bold;
+  margin-right: 10px;
+}
+
+.fa-globe {
+  color: #1C5217;
 }
 
 /*Styling footer */
@@ -26,7 +50,8 @@ nav a {
     height: 80px;
     background-color: #8ADD9D;
     color: white;
-    padding-top:5px;;
+    padding-top:5px;
+    /*background: linear-gradient(transparent, #8ADD9D);*/
 
 }
 
