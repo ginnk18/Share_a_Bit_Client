@@ -25,7 +25,12 @@ class OrganizationsIndexPage extends Component {
 					<div className="card org-index-item" style={styles.orgCard}>
 						<div className="card-body">
 							<h4 className="card-title">{org.name}</h4>
-							<p className="card-text">{org.description.slice(0, 300)}...</p>
+							{
+								org.description 
+									? <p className="card-text">{org.description.slice(0, 300)}...</p>
+									: <p></p>
+
+							}
 							<Link to={`/organizations/${org.id}`}>See More</Link>
 						</div>
 					</div>
