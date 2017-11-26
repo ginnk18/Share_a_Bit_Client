@@ -12,3 +12,21 @@ export function fetchOrganizations() {
 		payload: request
 	};
 }
+
+///// Attempt at pagination:
+
+// export function fetchOrganizations() {
+// 	const request = axios({
+// 						method: 'get',
+// 						url: `${ROOT_URL}/organizations`,
+// 						data: {
+// 							limit: 6,
+// 							offset: 4
+// 						}
+// 					});
+// 	console.log(request);
+// 	return {
+// 		type: FETCH_ORGANIZATIONS,
+// 		payload: request
+// 	};
+// }

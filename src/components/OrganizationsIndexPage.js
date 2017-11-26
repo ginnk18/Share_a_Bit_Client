@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOrganizations } from '../actions';
+import ReactPaginate from 'react-paginate';
 
 class OrganizationsIndexPage extends Component {
 
@@ -13,7 +14,7 @@ class OrganizationsIndexPage extends Component {
 	renderOrgs() {
 		const styles = {
 			orgCard: {
-				backgroundImage: 'url("/images/earth-leaves-small.png")',
+				backgroundImage: 'url("/images/earth-leaves-small-5.png")',
 				color: 'white'
 			}
 		}
@@ -24,7 +25,7 @@ class OrganizationsIndexPage extends Component {
 					<div className="card org-index-item" style={styles.orgCard}>
 						<div className="card-body">
 							<h4 className="card-title">{org.name}</h4>
-							<p className="card-text">{org.description.slice(0, 200)}...</p>
+							<p className="card-text">{org.description.slice(0, 300)}...</p>
 							<Link to={`/organizations/${org.id}`}>See More</Link>
 						</div>
 					</div>
@@ -50,15 +51,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { fetchOrganizations })(OrganizationsIndexPage);
-
-
-// <div class="row">
-//   <div class="col-sm-6">
-//     <div class="card">
-//       <div class="card-body">
-//         <h4 class="card-title">Special title treatment</h4>
-//         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-//         <a href="#" class="btn btn-primary">Go somewhere</a>
-//       </div>
-//     </div>
-//   </div>
