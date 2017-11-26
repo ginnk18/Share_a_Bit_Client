@@ -35,6 +35,11 @@ class OrganizationsIndexPage extends Component {
 	}
 
 	render() {
+
+		// if(!this.props.orgs) {
+		// 	return <div>Loading...</div>
+		// }
+
 		return (
 			<div className="OrganizationsIndexPage container">
 				<h1>All Organizations</h1>

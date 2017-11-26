@@ -1,16 +1,24 @@
 import axios from 'axios';
 
 export const FETCH_ORGANIZATIONS = 'fetch_organizations';
+export const FETCH_ORGANIZATION = 'fetch_organization';
 
 const ROOT_URL = 'http://localhost:3000/api';
 
 export function fetchOrganizations() {
 	const request = axios.get(`${ROOT_URL}/organizations`);
-	console.log(request);
 	return {
 		type: FETCH_ORGANIZATIONS,
 		payload: request
 	};
+}
+
+export function fetchOrganization(id) {
+	const request = axios.get(`${ROOT_URL}/organizations/${id}`)
+	return {
+		type: FETCH_ORGANIZATION,
+		payload: request
+	}
 }
 
 ///// Attempt at pagination:

@@ -6,13 +6,14 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import SignInPage from './SignInPage';
 import HomePage from './HomePage';
 import OrganizationsIndexPage from './OrganizationsIndexPage';
+import OrganizationsShowPage from './OrganizationsShowPage';
 
 class App extends Component {
 
 	_renderNavbar() {
 		return (
 			<nav className="navbar navbar-expand share-navbar">
-				<Link to="/"><i class="fa fa-globe fa-3x" aria-hidden="true"></i></Link>
+				<Link to="/"><i className="fa fa-globe fa-3x" aria-hidden="true"></i></Link>
 				<div className="ml-auto">
 				<Link to="/organizations">Organizations</Link>
 				<Link to="/sign_in">Sign In</Link>
@@ -27,12 +28,12 @@ class App extends Component {
     			<div className="footer-social-icons">
     				{/*<p>© Share a Bit 2017</p>*/}
 			        <ul className="social-icons mb-0">
-			            <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
-			            <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
-			            <li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
-			            <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
-			            <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
-			            <li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+			            <li><a href="" className="social-icon"> <i className="fa fa-facebook"></i></a></li>
+			            <li><a href="" className="social-icon"> <i className="fa fa-twitter"></i></a></li>
+			            <li><a href="" className="social-icon"> <i className="fa fa-rss"></i></a></li>
+			            <li><a href="" className="social-icon"> <i className="fa fa-youtube"></i></a></li>
+			            <li><a href="" className="social-icon"> <i className="fa fa-linkedin"></i></a></li>
+			            <li><a href="" className="social-icon"> <i className="fa fa-google-plus"></i></a></li>
 			        </ul>
     			</div>
   			</div>
@@ -55,6 +56,7 @@ class App extends Component {
 	        {this._renderNavbar()}
 	        <Switch>
 	        	<Route path="/sign_in" component={SignInPage} />
+	        	<Route path="/organizations/:id" component={OrganizationsShowPage} />
 	        	<Route path="/organizations" component={OrganizationsIndexPage} />
 	        	<Route path="/" component={HomePage} />
 	        </Switch>
