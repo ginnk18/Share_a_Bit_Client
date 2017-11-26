@@ -11,11 +11,23 @@ class OrganizationsIndexPage extends Component {
 	}
 
 	renderOrgs() {
+		const styles = {
+			orgCard: {
+				backgroundImage: 'url("/images/earth-leaves-small.png")',
+				color: 'white'
+			}
+		}
 		return _.map(this.props.orgs, org => {
+			{/*const description = org.description.slice(0, 50)*/}
 			return (
-				<div key={org.id}>
-				<h3>{org.name}</h3>
-				<p>{typeof org.description}</p>
+				<div className="col-sm-6" key={org.id}>
+					<div className="card org-index-item" style={styles.orgCard}>
+						<div className="card-body">
+							<h4 className="card-title">{org.name}</h4>
+							<p className="card-text">{org.description.slice(0, 200)}...</p>
+							<Link to={`/organizations/${org.id}`}>See More</Link>
+						</div>
+					</div>
 				</div>
 			);
 		})
@@ -23,9 +35,11 @@ class OrganizationsIndexPage extends Component {
 
 	render() {
 		return (
-			<div className="OrganizationsIndexPage">
+			<div className="OrganizationsIndexPage container">
 				<h1>All Organizations</h1>
-				{this.renderOrgs()}
+				<div className="row">
+					{this.renderOrgs()}	
+				</div>
 			</div>
 		);
 	}
@@ -37,23 +51,14 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, { fetchOrganizations })(OrganizationsIndexPage);
 
-	// componentDidMount() { 
-	// 	this.props.fetchPosts();
-	// }
 
-	// renderPosts() {
-	// 	return _.map(this.props.posts, post => {
-	// 		return (
-	// 			<li className="list-group-item" key={post.id}>
-	// 				<Link to={`/posts/${post.id}`}>{post.title}</Link>
-	// 			</li>
-	// 		);
-	// 	});
-	// }
-
-
-// function mapStateToProps(state) {
-// 	return { posts: state.posts } // user: state.user, token: state.token
-// }
-
-// export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
+// <div class="row">
+//   <div class="col-sm-6">
+//     <div class="card">
+//       <div class="card-body">
+//         <h4 class="card-title">Special title treatment</h4>
+//         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+//         <a href="#" class="btn btn-primary">Go somewhere</a>
+//       </div>
+//     </div>
+//   </div>
