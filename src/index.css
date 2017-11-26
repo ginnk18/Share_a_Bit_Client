@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /*font-family: "Courier New", Courier, monospace;*/
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 /*NavBar Styling*/
@@ -13,6 +14,8 @@ body {
 
 nav a {
 	color: black;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
 }
 
 /*Styling footer */

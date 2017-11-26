@@ -25,12 +25,8 @@ class HomePage extends Component {
 				<div style={styles.jumbotron} class="row">
 					<div style={styles.header}>
   						<h1><strong>Share a Bit</strong></h1>
-  						<p class="pl-5">Pinterest kickstarter etsy blue bottle butcher.
-  						 Flannel taiyaki lo-fi cliche. Snackwave sartorial 
-  						 beard kombucha iPhone narwhal. Celiac vape brooklyn
-  						  franzen vexillologist squid. Meggings mlkshk authentic 
-  						  bicycle rights. Meggings slow-carb retro kinfolk, 
-  						  pop-up semiotics pitchfork.</p>
+  						<h5 class="pl-5">Welcome to Share a Bit. Sign up to safely and easily manage
+  						your donations to organizations that keep the world turning.</h5>
 					</div>
   					<img style={styles.img} src="/images/earth-leaves.png" />
   				</div>
