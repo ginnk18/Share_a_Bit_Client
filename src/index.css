@@ -28,6 +28,10 @@ nav a {
   color: #1C5217;
 }
 
+.sign-out-link:hover {
+  cursor: pointer;
+}
+
 /*Styling Organzation Index */
 
 .org-index-item {

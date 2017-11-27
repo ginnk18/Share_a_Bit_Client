@@ -21,8 +21,9 @@ class App extends Component {
 	  }
 
 	componentDidMount() {
+		console.log('User: ', this.state.user)
     	this.signIn();
-    	console.log(localStorage);
+    	console.log('localStorage', localStorage);
   	}
 
   	signIn() {
@@ -50,12 +51,14 @@ class App extends Component {
 				<Link to="/organizations">Organizations</Link>
 				{
 					this.isSignedIn()
-						? <span>Welcome, {this.state.user.email}</span>
+						? this.state.user.type === 'donor' 
+							? <span>Welcome, {this.state.user.firstName}</span>
+							: <span>Welcome, {this.state.user.name} </span>
 						: <Link to="/sign_in">Sign In</Link>
 				}
 				{
 					this.isSignedIn()
-						? <button onClick={this.signOut}>Sign Out</button>
+						? <a className="sign-out-link" onClick={this.signOut}>Sign Out</a>
 						: ''
 				}
 				</div>
@@ -65,14 +68,10 @@ class App extends Component {
 
 
 	_renderFooter() {
-		// const style = {
-		// 	backgroundImage: 'url("/images/grass-2.jpg")'
-		// }
 
 		return (
 			  <div className="footer">
     			<div className="footer-social-icons">
-    				{/*<p>© Share a Bit 2017</p>*/}
 			        <ul className="social-icons mb-0">
 			            <li><a href="" className="social-icon"> <i className="fa fa-facebook"></i></a></li>
 			            <li><a href="" className="social-icon"> <i className="fa fa-twitter"></i></a></li>
@@ -118,11 +117,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-		// {
-		// 			this.isSignedIn()
-		// 				? <span>Welcome, {this.state.user.email}</span>
-		// 				: <Link to="/sign_in">Sign In</Link>
-		// 		}
