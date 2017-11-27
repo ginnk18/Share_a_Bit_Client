@@ -20,7 +20,7 @@ export const Token = {
 			if(res.status === 200) {
 				return res.json();
 			} else {
-				return {error: 'Something went wrong'};
+				return {error: 'Invalid email or password.'};
 			}
 		});
 	}

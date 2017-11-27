@@ -24,6 +24,13 @@ nav a {
   margin-right: 10px;
 }
 
+nav span {
+  color: black;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
 .fa-globe {
   color: #1C5217;
 }

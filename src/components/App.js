@@ -7,13 +7,16 @@ import SignInPage from './SignInPage';
 import HomePage from './HomePage';
 import OrganizationsIndexPage from './OrganizationsIndexPage';
 import OrganizationsShowPage from './OrganizationsShowPage';
+import DonorDashboardPage from './DonorDashboardPage';
+import OrgDashboardPage from './OrgDashboardPage';
 
 class App extends Component {
 	constructor(props) {
 	    super(props);
 
 	    this.state = {
-	      user: {}
+	      user: {},
+	      flash: ''
 	    }
 
 	    this.signIn = this.signIn.bind(this);
@@ -30,23 +33,41 @@ class App extends Component {
 	    const jwt = localStorage.getItem('jwt');
 	    if (jwt) {
 	      const payload = jwtDecode(jwt);
-	      this.setState({user: payload});
+	      this.setState({user: payload, flash: 'Welcome, thanks for signing in!'});
+	      setInterval(() => {
+	      	this.clearFlash()
+	      }, 5000)
 	    }
   	}
 
   	signOut() {
   		localStorage.clear()
-  		this.setState({user: {}})
+  		this.setState({user: {}, flash: 'Signed out.'})
+  		setInterval(() => {
+	      	this.clearFlash()
+	    }, 5000)
+  		this.props.history.push('/')
   	}
 
 	isSignedIn() {
 	  return !!this.state.user.id
 	}
 
+	clearFlash() {
+		this.setState({flash: ''})
+	}
+
 	_renderNavbar() {
 		return (
 			<nav className="navbar navbar-expand share-navbar">
 				<Link to="/"><i className="fa fa-globe fa-3x" aria-hidden="true"></i></Link>
+				{
+					this.isSignedIn()
+						? this.state.user.type === 'donor'
+							? <Link to="/donor_dashboard">Your Dashboard</Link>
+							: <Link to="/org_dashboard">Your Dashboard</Link>
+						: ''
+				}
 				<div className="ml-auto">
 				<Link to="/organizations">Organizations</Link>
 				{
@@ -85,6 +106,14 @@ class App extends Component {
 		);
 	}
 
+	_renderFlashMessage() {
+		return (
+			<div className="alert alert-success alert-dismissible fade show" role="alert">
+				{this.state.flash}
+			</div>
+		);
+	}
+
 
   render() {
   	const styles = {
@@ -100,6 +129,11 @@ class App extends Component {
 	      <div className="App">
 	      	{/*<div style={styles.navImage}></div>*/}
 	        {this._renderNavbar()}
+	        {
+	        	this.state.flash 
+	        		? this._renderFlashMessage()
+	        		: <div></div>
+	        }
 	        <Switch>
 	        	<Route 
 	        		path="/sign_in" 
@@ -107,6 +141,8 @@ class App extends Component {
 	        	/>
 	        	<Route path="/organizations/:id" component={OrganizationsShowPage} />
 	        	<Route path="/organizations" component={OrganizationsIndexPage} />
+	        	<Route path="/donor_dashboard" component={DonorDashboardPage} />
+	        	<Route path="/org_dashboard" component={OrgDashboardPage} />
 	        	<Route path="/" component={HomePage} />
 	        </Switch>
 	        {this._renderFooter()}
