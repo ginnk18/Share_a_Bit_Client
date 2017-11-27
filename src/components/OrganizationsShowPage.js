@@ -12,6 +12,9 @@ class OrganizationsShowPage extends Component {
 	}
 
 	renderCampaigns() {
+		// const style = {
+		// 	backgroundImage: 'url("/images/leaf.jpg")'
+		// }
 		return _.map(this.props.campaigns, campaign => {
 			return (
 				<div className="col-md-6" key={campaign.id}>
@@ -58,23 +61,3 @@ function mapStateToProps({ orgs }, ownProps) {
 
 export default connect(mapStateToProps, { fetchOrganization })(OrganizationsShowPage);
 
-// return _.map(this.props.orgs, org => {
-// 			{/*const description = org.description.slice(0, 50)*/}
-// 			return (
-// 				<div className="col-sm-6" key={org.id}>
-// 					<div className="card org-index-item" style={styles.orgCard}>
-// 						<div className="card-body">
-// 							<h4 className="card-title">{org.name}</h4>
-// 							{
-// 								org.description 
-// 									? <p className="card-text">{org.description.slice(0, 300)}...</p>
-// 									: <p></p>
-
-// 							}
-// 							<Link to={`/organizations/${org.id}`}>See More</Link>
-// 						</div>
-// 					</div>
-// 				</div>
-// 			);
-// 		})
-// 	}
