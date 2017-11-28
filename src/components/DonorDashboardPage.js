@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 class DonorDashboardPage extends Component {
 	render() {
 		return(
-			<div>Welcome to the Donor Dashboard Page!</div>
+			<div className="DonorDashboardPage">
+				Welcome to the Donor Dashboard Page!
+			</div>
 		);
 	}
 }

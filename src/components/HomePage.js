@@ -22,10 +22,10 @@ class HomePage extends Component {
 		}
 		return (
 			<div className="HomePage">
-				<div style={styles.jumbotron} class="row">
+				<div style={styles.jumbotron} className="row">
 					<div style={styles.header}>
   						<h1><strong>Share a Bit</strong></h1>
-  						<h5 class="pl-5">Welcome to Share a Bit. Sign up to safely and easily manage
+  						<h5 className="pl-5">Welcome to Share a Bit. Sign up to safely and easily manage
   						your donations to organizations that keep the world turning.</h5>
 					</div>
   					<img style={styles.img} src="/images/earth-leaves.png" />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import AuthRoute from './AuthRoute';
 
 //Pages:
 import SignInPage from './SignInPage';
@@ -24,9 +25,7 @@ class App extends Component {
 	  }
 
 	componentDidMount() {
-		console.log('User: ', this.state.user)
     	this.signIn();
-    	console.log('localStorage', localStorage);
   	}
 
   	signIn() {
@@ -38,16 +37,18 @@ class App extends Component {
 	      	this.clearFlash()
 	      }, 5000)
 	    }
+	    return this.state.user;
   	}
 
   	signOut() {
   		localStorage.clear()
   		this.setState({user: {}, flash: 'Signed out.'})
+  		this.props.history.push('/') // not working ?? (App is wrapped in Route)
   		setInterval(() => {
 	      	this.clearFlash()
 	    }, 5000)
-  		this.props.history.push('/')
   	}
+
 
 	isSignedIn() {
 	  return !!this.state.user.id
@@ -69,7 +70,11 @@ class App extends Component {
 						: ''
 				}
 				<div className="ml-auto">
-				<Link to="/organizations">Organizations</Link>
+				{
+					this.isSignedIn()
+						? <Link to="/organizations">Organizations</Link>
+						: ''
+				}
 				{
 					this.isSignedIn()
 						? this.state.user.type === 'donor' 
@@ -116,13 +121,13 @@ class App extends Component {
 
 
   render() {
-  	const styles = {
-  		navImage: {
-  			height: '80px',
-  			width: '100vw',
-  			backgroundImage: 'url("/images/hand-world.jpg")'
-  		}
-  	}
+  	// const styles = {
+  	// 	navImage: {
+  	// 		height: '80px',
+  	// 		width: '100vw',
+  	// 		backgroundImage: 'url("/images/hand-world.jpg")'
+  	// 	}
+  	// }
 
     return (
     	<Router>
@@ -139,10 +144,26 @@ class App extends Component {
 	        		path="/sign_in" 
 	        		render={props => <SignInPage {...props} onSignIn={this.signIn} />} 
 	        	/>
-	        	<Route path="/organizations/:id" component={OrganizationsShowPage} />
-	        	<Route path="/organizations" component={OrganizationsIndexPage} />
-	        	<Route path="/donor_dashboard" component={DonorDashboardPage} />
-	        	<Route path="/org_dashboard" component={OrgDashboardPage} />
+	        	<AuthRoute 
+	        		isAuthenticated={this.isSignedIn()}
+	        		path="/organizations/:id" 
+	        		component={OrganizationsShowPage} 
+	        	/>
+	        	<AuthRoute 
+	        		isAuthenticated={this.isSignedIn()}
+	        		path="/organizations" 
+	        		component={OrganizationsIndexPage} 
+	        	/>
+	        	<AuthRoute 
+	        		isAuthenticated={this.isSignedIn()}
+	        		path="/donor_dashboard" 
+	        		component={DonorDashboardPage} 
+	        	/>
+	        	<AuthRoute 
+	        		isAuthenticated={this.isSignedIn()}
+	        		path="/org_dashboard" 
+	        		component={OrgDashboardPage} 
+	        	/>
 	        	<Route path="/" component={HomePage} />
 	        </Switch>
 	        {this._renderFooter()}

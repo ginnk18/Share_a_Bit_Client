@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SignInForm from './SignInForm';
 import {Token} from '../lib/requests';
+import jwtDecode from 'jwt-decode';
 
 class SignInPage extends Component {
 	constructor(props) {
@@ -13,6 +14,10 @@ class SignInPage extends Component {
 		this.signInUser = this.signInUser.bind(this);
 	}
 
+	// componentDidMount() {
+	// 	console.log(this.props);
+	// }
+
 	signInUser(params) {
 		const {onSignIn = () => {}} = this.props;
 
@@ -22,10 +27,10 @@ class SignInPage extends Component {
 				if(!data.error) {
 					const {jwt} = data;
 					localStorage.setItem('jwt', jwt);
-					onSignIn();
-					//the history prop is only available to components rendered
-					//by the '<Route />' component of react-router-dom
-					this.props.history.push('/donor_dashboard') // you don't get this w/o react router
+					const user = onSignIn();
+					user.type === 'donor'
+						? this.props.history.push('/donor_dashboard') 
+						: this.props.history.push('/org_dashboard')
 				} else {
 					this.setState({error: data.error})
 				}
