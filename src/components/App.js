@@ -33,7 +33,7 @@ class App extends Component {
 	    if (jwt) {
 	      const payload = jwtDecode(jwt);
 	      this.setState({user: payload, flash: 'Welcome, thanks for signing in!'});
-	      setInterval(() => {
+	      setTimeout(() => {
 	      	this.clearFlash()
 	      }, 5000)
 	    }
@@ -44,7 +44,7 @@ class App extends Component {
   		localStorage.clear()
   		this.setState({user: {}, flash: 'Signed out.'})
   		this.props.history.push('/') // not working ?? (App is wrapped in Route)
-  		setInterval(() => {
+  		setTimeout(() => {
 	      	this.clearFlash()
 	    }, 5000)
   	}
@@ -148,6 +148,7 @@ class App extends Component {
 	        		isAuthenticated={this.isSignedIn()}
 	        		path="/organizations/:id" 
 	        		component={OrganizationsShowPage} 
+	        		// render={props => <OrganizationsShowPage {...props} />}
 	        	/>
 	        	<AuthRoute 
 	        		isAuthenticated={this.isSignedIn()}

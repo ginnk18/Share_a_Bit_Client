@@ -62,6 +62,12 @@ nav span {
   margin-top: 20px;
 }
 
+.icon-button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
 /*Styling footer */
 
 .footer {

@@ -3,8 +3,18 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOrganization } from '../actions';
+import { Favourite } from '../lib/requests';
 
 class OrganizationsShowPage extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			flash: ''
+		}
+
+		this.favourite = this.favourite.bind(this);
+	}
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
@@ -29,6 +39,21 @@ class OrganizationsShowPage extends Component {
 		})
 	}
 
+	favourite() {
+		// const id = this.props.org.id
+		// console.log(id)
+		Favourite
+			.create(this.props.org.id)
+			.then(data => {
+				if(!data.error) {
+					console.log(data);
+					// this.setState({flash: data})
+				} else {
+					this.setState({flash: data.error})
+				}
+			})
+	}
+
 	render() {
 		const { org } = this.props;
 		const { campaigns } = this.props;
@@ -42,6 +67,7 @@ class OrganizationsShowPage extends Component {
 				<Link to="/organizations">Back</Link>
 				<div className="row">
 					<h2>{org.name}</h2>
+					<button className="icon-button" onClick={this.favourite}><i className="fa fa-star-o fa-2x" aria-hidden="true"></i></button>
 					<p>{org.description}</p>
 					<button className="btn btn-success ml-auto">Donate to {org.name}</button>
 				</div>
@@ -55,7 +81,6 @@ class OrganizationsShowPage extends Component {
 }
 
 function mapStateToProps({ orgs }, ownProps) {
-	console.log('Orgs: ', orgs);
 	return { org: orgs[0], campaigns: orgs[1] }
 }
 

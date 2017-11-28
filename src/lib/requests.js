@@ -3,9 +3,9 @@
 
 const ROOT_URL = 'http://localhost:3000/api';
 
-// function getJwt() {
-// 	return localStorage.getItem('jwt');
-// }
+function getJwt() {
+	return localStorage.getItem('jwt');
+}
 
 export const Token = {
 	create(params) {
@@ -26,3 +26,20 @@ export const Token = {
 	}
 }
 
+export const Favourite = {
+	create(orgId) {
+		return fetch(
+			`${ROOT_URL}/organizations/${orgId}/favourites`,
+			{
+				method: 'POST',
+				headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
+			}
+		).then(res => {
+			if(res.status === 200) {
+				return res.json();
+			} else {
+				return {error: 'Could not add Favourite.'};
+			}
+		})
+	}
+}
