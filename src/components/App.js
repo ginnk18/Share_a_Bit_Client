@@ -155,13 +155,12 @@ class App extends Component {
 	        		path="/organizations" 
 	        		component={OrganizationsIndexPage} 
 	        	/>
-
-	        	<Route 
-	        		// isAuthenticated={this.isSignedIn()}
-	        		// user={this.state.user}
-	        		path="/donor_dashboard" 
+	        	<AuthRoute
+	        		isAuthenticated={this.isSignedIn()}
+	        		path="/donor_dashboard"
+	        		// userId={this.state.user.id}
+	        		// component={DonorDashboardPage}
 	        		render={props => <DonorDashboardPage {...props} userId={this.state.user.id} />}
-	        		// component={DonorDashboardPage} 
 	        	/>
 	        	<AuthRoute 
 	        		isAuthenticated={this.isSignedIn()}
@@ -178,3 +177,11 @@ class App extends Component {
 }
 
 export default App;
+
+// 				<Route 
+// 	        		// isAuthenticated={this.isSignedIn()}
+// 	        		// user={this.state.user}
+// 	        		path="/donor_dashboard" 
+// 	        		render={props => <DonorDashboardPage {...props} userId={this.state.user.id} />}
+// 	        		// component={DonorDashboardPage} 
+// 	        	/>

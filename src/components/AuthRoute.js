@@ -6,14 +6,19 @@ export default function AuthRoute(props) {
 	const {
 		component: Component,
 		isAuthenticated = false,
+		render,
 		...restProps
 	} = props;
+
+	const componentRenderer = typeof render === 'function'
+	  ? render
+	  : props => <Component {...props} />;
 
 	return (
 		<Route {...restProps} 
 			render={props => {
 				if (isAuthenticated) {
-					return <Component {...props} /> //callback Component! Ooooooo aaaaa
+					return componentRenderer(props) 
 				} else {
 					return <Redirect to={{pathname: '/sign_in'}} />
 				}
