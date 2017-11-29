@@ -6,8 +6,16 @@ export const FETCH_DONOR = 'fetch_donor';
 
 const ROOT_URL = 'http://localhost:3000/api';
 
+function getJwt() {
+	return localStorage.getItem('jwt');
+}
+
 export function fetchOrganizations() {
-	const request = axios.get(`${ROOT_URL}/organizations`);
+	const request = axios.get(`${ROOT_URL}/organizations`,
+					{
+						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
+					}
+					);
 	return {
 		type: FETCH_ORGANIZATIONS,
 		payload: request
@@ -15,7 +23,11 @@ export function fetchOrganizations() {
 }
 
 export function fetchOrganization(id) {
-	const request = axios.get(`${ROOT_URL}/organizations/${id}`)
+	const request = axios.get(`${ROOT_URL}/organizations/${id}`,
+					{
+						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
+					}
+					)
 	return {
 		type: FETCH_ORGANIZATION,
 		payload: request
