@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchDonor } from '../actions';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import Payments from './Payments';
 
 class DonorDashboardPage extends Component {
 	constructor(props) {
@@ -27,8 +28,6 @@ class DonorDashboardPage extends Component {
 	//show page until I reload the page :S :S :S :S
 
 	render() {
-		console.log(this.props.donor)
-		console.log(this.props.favouriteOrgs)
 		const {donor} = this.props;
 		const {favouriteOrgs} = this.props;
 
@@ -40,12 +39,15 @@ class DonorDashboardPage extends Component {
 			<div className="DonorDashboardPage">
 			<h3 className="dashboard-header">Welcome to your dashboard {this.props.donor.firstName}</h3>
 			<div className="container">
-			<div class="row">
-				<div class="col-md-4">
+			<div className="row donor-dashboard-row">
+				<div className="col-md-4">
 					<h5>Recent Updates from our Organizations</h5>
 				</div>
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
+				<div className="col-md-4">
+					<h5>Manage your Credits</h5>
+					<Payments />
+				</div>
+				<div className="col-md-4">
 					<div className="recent-donations">
 						<h5>Your Recent donations: </h5>
 						<p>Donation!</p>
