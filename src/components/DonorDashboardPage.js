@@ -16,7 +16,9 @@ class DonorDashboardPage extends Component {
 	_renderFavouriteOrgs() {
 		return _.map(this.props.favouriteOrgs, org => {
 			return (
-				<li><Link to={`/organizations/${org.id}`}>{org.name}</Link></li>
+				<li key={org.id} className="fav-org-list-item">
+					<Link to={`/organizations/${org.id}`}>{org.name}</Link>
+				</li>
 			);
 		})
 	}
@@ -36,11 +38,22 @@ class DonorDashboardPage extends Component {
 			<h3 className="dashboard-header">Welcome to your dashboard {this.props.donor.firstName}</h3>
 			<div className="container">
 			<div class="row">
-				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<h5>Recent Updates from our Organizations</h5>
+				</div>
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<h4>See what your favourite organizations are up to...</h4>
-					<ul className="donorFavOrgs">{this._renderFavouriteOrgs()}</ul>
+					<div className="recent-donations">
+						<h5>Your Recent donations: </h5>
+						<p>Donation!</p>
+						<p>Donation!</p>
+						<p>Donation!</p>
+						<a href="#">View all donation history</a>
+					</div>
+					<div>
+						<h5>See what your favourite organizations are up to...</h5>
+						<ul className="donorFavOrgs">{this._renderFavouriteOrgs()}</ul>
+					</div>
 				</div>
 			</div>
 			</div>
