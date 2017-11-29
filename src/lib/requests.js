@@ -38,7 +38,7 @@ export const Favourite = {
 			if(res.status === 200) {
 				return res.json();
 			} else {
-				return {error: 'Could not add Favourite.'};
+				return {error: 'You already favourited that organization.'};
 			}
 		})
 	}

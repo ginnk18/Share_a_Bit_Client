@@ -24,7 +24,7 @@ class App extends Component {
 	    this.signOut = this.signOut.bind(this);
 	  }
 
-	componentDidMount() {
+	componentWillMount() {
     	this.signIn();
   	}
 
@@ -69,12 +69,12 @@ class App extends Component {
 							: <Link to="/org_dashboard">Your Dashboard</Link>
 						: ''
 				}
-				<div className="ml-auto">
 				{
 					this.isSignedIn()
 						? <Link to="/organizations">Organizations</Link>
 						: ''
 				}
+				<div className="ml-auto">
 				{
 					this.isSignedIn()
 						? this.state.user.type === 'donor' 
@@ -155,10 +155,13 @@ class App extends Component {
 	        		path="/organizations" 
 	        		component={OrganizationsIndexPage} 
 	        	/>
-	        	<AuthRoute 
-	        		isAuthenticated={this.isSignedIn()}
+
+	        	<Route 
+	        		// isAuthenticated={this.isSignedIn()}
+	        		// user={this.state.user}
 	        		path="/donor_dashboard" 
-	        		component={DonorDashboardPage} 
+	        		render={props => <DonorDashboardPage {...props} userId={this.state.user.id} />}
+	        		// component={DonorDashboardPage} 
 	        	/>
 	        	<AuthRoute 
 	        		isAuthenticated={this.isSignedIn()}

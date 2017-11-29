@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text|Spectral+SC');
+
 body {
   margin: 0;
   /*font-family: "Courier New", Courier, monospace;*/
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  /*font-family: 'Crimson Text', serif;*/
   /*For the footer*/
   padding-bottom: 6rem;
   position: relative;
@@ -20,6 +23,7 @@ body {
 nav a {
 	color: black;
 	font-family: Verdana, Geneva, sans-serif;
+  /*font-family: 'Spectral SC', serif;*/
 	font-weight: bold;
   margin-right: 10px;
 }
@@ -66,6 +70,24 @@ nav span {
   border: none;
   background-color: white;
   cursor: pointer;
+}
+
+/*Styling Donor Dashboard*/
+
+.DonorDashboardPage {
+  font-family: 'Spectral SC', serif;
+}
+
+.dashboard-header {
+  /*background-color: #1C5217;*/
+  padding: 10px;
+  border-bottom: 5px #1C5217 solid;
+  /*font-family: 'Crimson Text', serif;*/
+  font-family: 'Spectral SC', serif;
+}
+
+.donorFavOrgs {
+  list-style: none;
 }
 
 /*Styling footer */

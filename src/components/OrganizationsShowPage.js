@@ -49,6 +49,7 @@ class OrganizationsShowPage extends Component {
 					console.log(data);
 					// this.setState({flash: data})
 				} else {
+					console.log(data);
 					this.setState({flash: data.error})
 				}
 			})
