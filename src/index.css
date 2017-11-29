@@ -18,6 +18,7 @@ body {
   /*background: linear-gradient(#8ADD9D, transparent);*/
   background: transparent;
   /*border-bottom: 1px solid #1C5217;*/
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 nav a {
@@ -90,7 +91,7 @@ nav span {
   list-style: none;
 }
 
-.recent-donations {
+.recent-donations, .manage-credits {
   border-bottom: 2px #1C5217 solid;
   padding-bottom: 10px;
   margin-bottom: 10px;

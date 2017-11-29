@@ -37,15 +37,20 @@ class DonorDashboardPage extends Component {
 		
 		return(
 			<div className="DonorDashboardPage">
-			<h3 className="dashboard-header">Welcome to your dashboard {this.props.donor.firstName}</h3>
+			<h3 className="dashboard-header">Welcome to your dashboard {donor.firstName}</h3>
 			<div className="container">
 			<div className="row donor-dashboard-row">
 				<div className="col-md-4">
-					<h5>Recent Updates from our Organizations</h5>
+					<h5>Recent Updates from Your Organizations</h5>
 				</div>
 				<div className="col-md-4">
-					<h5>Manage your Credits</h5>
-					<Payments />
+					<div className="row flex-column manage-credits">
+						<h5>Manage your Credits</h5>
+						<Payments />
+					</div>
+					<div className="row">
+						<h5>Browse our new Organizations</h5>
+					</div>
 				</div>
 				<div className="col-md-4">
 					<div className="recent-donations">
