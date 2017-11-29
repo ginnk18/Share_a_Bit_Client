@@ -58,6 +58,8 @@ class OrganizationsShowPage extends Component {
 	render() {
 		const { org } = this.props;
 		const { campaigns } = this.props;
+		const { userFavourite } = this.props;
+		console.log(userFavourite);
 
 		if (!org || !campaigns) {
 			return <div>Loading Non-profit data...</div>
@@ -68,7 +70,12 @@ class OrganizationsShowPage extends Component {
 				<Link to="/organizations">Back</Link>
 				<div className="row">
 					<h2>{org.name}</h2>
-					<button className="icon-button" onClick={this.favourite}><i className="fa fa-star-o fa-2x" aria-hidden="true"></i></button>
+					{
+						userFavourite
+							? <button className="icon-button" onClick={this.favourite}><i className="fa fa-star fa-2x" aria-hidden="true"></i></button>
+							: <button className="icon-button" onClick={this.favourite}><i className="fa fa-star-o fa-2x" aria-hidden="true"></i></button>
+					}
+					
 					<p>{org.description}</p>
 					<button className="btn btn-success ml-auto">Donate to {org.name}</button>
 				</div>
@@ -82,7 +89,8 @@ class OrganizationsShowPage extends Component {
 }
 
 function mapStateToProps({ orgs }, ownProps) {
-	return { org: orgs[0], campaigns: orgs[1] }
+	console.log('Orgs from store: ', orgs)
+	return { org: orgs[0], campaigns: orgs[1], userFavourite: orgs[2] }
 }
 
 export default connect(mapStateToProps, { fetchOrganization })(OrganizationsShowPage);
