@@ -22,6 +22,9 @@ class DonorDashboardPage extends Component {
 			);
 		})
 	}
+	// bug - only the first org clicked on will go to the correct show page :S 
+	//then after the first one is clicked, all the other org links go to that first org
+	//show page until I reload the page :S :S :S :S
 
 	render() {
 		console.log(this.props.donor)

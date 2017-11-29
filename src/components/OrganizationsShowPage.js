@@ -56,10 +56,7 @@ class OrganizationsShowPage extends Component {
 	}
 
 	render() {
-		const { org } = this.props;
-		const { campaigns } = this.props;
-		const { userFavourite } = this.props;
-		console.log(userFavourite);
+		const { org, campaigns, userFavourite } = this.props;
 
 		if (!org || !campaigns) {
 			return <div>Loading Non-profit data...</div>
