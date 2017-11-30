@@ -48,7 +48,7 @@ class OrganizationsIndexPage extends Component {
 		return (
 			<div className="OrganizationsIndexPage container">
 				<h1>All Organizations</h1>
-				<div className="row">
+				<div className="row animated fadeIn">
 					{this.renderOrgs()}	
 				</div>
 			</div>

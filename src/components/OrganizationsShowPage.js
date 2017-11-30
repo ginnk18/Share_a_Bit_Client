@@ -77,7 +77,7 @@ class OrganizationsShowPage extends Component {
 					<button className="btn btn-success ml-auto">Give credits to {org.name}</button>
 				</div>
 				<h3><strong>Current Campaigns</strong></h3>
-				<div className="row">
+				<div className="row animated bounceInUp">
 					{this.renderCampaigns()}
 				</div>
 			</div>

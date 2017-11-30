@@ -73,6 +73,10 @@ nav span {
   cursor: pointer;
 }
 
+.OrganizationsShowPage .btn {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 /*Styling Donor Dashboard*/
 
 .DonorDashboardPage {
