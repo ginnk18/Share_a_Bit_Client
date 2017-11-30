@@ -40,8 +40,10 @@ class DonorDashboardPage extends Component {
 	render() {
 		const {donor} = this.props;
 		const {favouriteOrgs} = this.props;
+		const {transactions} = this.props;
+		const {orgsDonatedTo} = this.props;
 
-		if (!donor && !favouriteOrgs) {
+		if (!donor && !favouriteOrgs && !transactions) {
 			return <div>Loading your dashboard...</div>
 		}
 		
@@ -67,9 +69,9 @@ class DonorDashboardPage extends Component {
 				<div className="col-md-4">
 					<div className="recent-donations">
 						<h5>Your Recent donations: </h5>
-						<p>Donation!</p>
-						<p>Donation!</p>
-						<p>Donation!</p>
+						<p>You donated ${transactions[0].amount} to {orgsDonatedTo[0].name}</p>
+						<p>You donated ${transactions[1].amount} to {orgsDonatedTo[1].name}</p>
+						<p>You donated ${transactions[2].amount} to {orgsDonatedTo[2].name}</p>
 						<a href="#">View all donation history</a>
 					</div>
 					<div>
@@ -87,12 +89,11 @@ class DonorDashboardPage extends Component {
 
 function mapStateToProps({ user }) {
 	if(user.donor) {
-		console.log('donor: ', user.donor)
-		console.log('donor credits: ', user.donor.credits)
+		console.log('Orgs Donated TO: ', user.orgsDonatedTo)
 	}
 	// return { donor: user[0], favouriteOrgs: user[1] }
 	//use this if I do 'return action.payload.data' in the userReducer:
-	return { donor: user.donor, favouriteOrgs: user.favouriteOrgs }
+	return { donor: user.donor, favouriteOrgs: user.favouriteOrgs, transactions: user.transactions, orgsDonatedTo: user.orgsDonatedTo }
 }
 
 export default connect(mapStateToProps, { fetchDonor })(DonorDashboardPage);

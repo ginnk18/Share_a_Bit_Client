@@ -15,6 +15,7 @@ class OrganizationsShowPage extends Component {
 		}
 
 		this.favourite = this.favourite.bind(this);
+		this.donateToOrg = this.donateToOrg.bind(this);
 	}
 
 	componentDidMount() {
@@ -61,7 +62,9 @@ class OrganizationsShowPage extends Component {
 			.donationToOrg(orgId, params)
 			.then(data => {
 				if(!data.error) {
-					console.log(data);
+					this.props.history.push(`/organizations/${orgId}`)
+					this.setState({flash: 'Thanks for your donation!'})
+					console.log(this.state.flash)
 				} else {
 					console.log(data);
 				}
@@ -106,7 +109,7 @@ class OrganizationsShowPage extends Component {
 		            <div className="modal-content">
 		              <div className="modal-header">
 		                <h5 className="modal-title" id="exampleModalLabel">Give Credits to {org.name}</h5>
-		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
 		                </button>
 		              </div>
 		            <div className="modal-body">
@@ -127,7 +130,6 @@ class OrganizationsShowPage extends Component {
 }
 
 function mapStateToProps({ orgs }, ownProps) {
-	console.log('Orgs from store: ', orgs)
 	return { org: orgs[0], campaigns: orgs[1], userFavourite: orgs[2] }
 }
 
