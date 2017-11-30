@@ -45,7 +45,12 @@ export function fetchDonor(id) {
 //Handling Stripe tokens:
 
 export function handleToken(token) {
-	const request = axios.post(`${ROOT_URL}/stripe`, token);
+	const request = axios.post(`${ROOT_URL}/stripe`,
+					token,
+					{
+						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
+					}
+					);
 
 	return {
 		type: FETCH_DONOR,

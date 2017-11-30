@@ -46,6 +46,7 @@ class DonorDashboardPage extends Component {
 				<div className="col-md-4">
 					<div className="row flex-column manage-credits">
 						<h5>Manage your Credits</h5>
+						<p>Your Credits: {donor.credits}</p>
 						<Payments />
 					</div>
 					<div className="row">
