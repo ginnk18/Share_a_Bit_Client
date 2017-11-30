@@ -44,11 +44,23 @@ nav span {
   cursor: pointer;
 }
 
+/*Home Page Styling*/
+
+.HomePage h1 {
+  padding: 50px;
+  margin-bottom: 20px;
+  /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);*/
+  /*border: 2px #1C5217 solid;*/
+  border-radius: 5px;
+  /*background-color: #8BFF93;*/
+}
+
 /*Styling Organzation Index */
 
 .org-index-item {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .card-body a {
