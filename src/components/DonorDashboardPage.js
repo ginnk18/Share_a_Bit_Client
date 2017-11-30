@@ -58,6 +58,7 @@ class DonorDashboardPage extends Component {
 						<h5>Manage your Credits</h5>
 						<p>Your Credits: {donor.credits}</p>
 						<Payments />
+						<a className="what-are-credits" href="#">What are credits?</a>
 					</div>
 					<div className="row">
 						<h5>Browse our new Organizations</h5>

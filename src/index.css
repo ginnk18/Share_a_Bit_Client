@@ -129,6 +129,16 @@ nav span {
   font-family: 'Spectral SC', serif;
 }
 
+.what-are-credits {
+  font-size: small;
+}
+
+/*Styling Donation to Organization Form: */
+
+.DonationToOrganizationForm {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 /*Styling footer */
 
 .footer {

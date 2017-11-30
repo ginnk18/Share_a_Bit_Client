@@ -93,13 +93,13 @@ class OrganizationsShowPage extends Component {
 		          <div className="modal-dialog" role="document">
 		            <div className="modal-content">
 		              <div className="modal-header">
-		                <h5 className="modal-title" id="exampleModalLabel">Give Credits: </h5>
+		                <h5 className="modal-title" id="exampleModalLabel">Give Credits to {org.name}</h5>
 		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
 		                </button>
 		              </div>
 		            <div className="modal-body">
 		              
-		 				<DonationToOrganizationForm />
+		 				<DonationToOrganizationForm orgName={org.name} orgId={org.id} />
 
 		            </div>
 		          </div>
