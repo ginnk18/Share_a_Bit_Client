@@ -31,7 +31,7 @@ class OrganizationsShowPage extends Component {
 					<div className="card campaign-item">
 						<div className="card-body">
 							<div className="card-title">{campaign.name}</div>
-							<button className="btn btn-success">Donate to this campaign</button>
+							<button className="btn btn-success">Give credits to this campaign</button>
 						</div>
 					</div>
 				</div>
@@ -74,7 +74,7 @@ class OrganizationsShowPage extends Component {
 					}
 					
 					<p>{org.description}</p>
-					<button className="btn btn-success ml-auto">Donate to {org.name}</button>
+					<button className="btn btn-success ml-auto">Give credits to {org.name}</button>
 				</div>
 				<h3><strong>Current Campaigns</strong></h3>
 				<div className="row">

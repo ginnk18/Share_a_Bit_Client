@@ -8,11 +8,21 @@ import Payments from './Payments';
 class DonorDashboardPage extends Component {
 	constructor(props) {
 		super(props)
+
+		this.state = {
+			credits: 0
+		}
 	}
 
 	componentDidMount() {
-		this.props.fetchDonor(this.props.userId); 
+		this.props.fetchDonor(this.props.userId);
 	}
+
+	// componentWillReceiveProps(nextProps) {
+	// 	this.setState({credits: nextProps.donor.credits})
+	// 	//doesnt work when I go to another page on website and then
+	// 	//go back to the dashboard the credits are back to zero :S :S :S
+	// }
 
 	_renderFavouriteOrgs() {
 		return _.map(this.props.favouriteOrgs, org => {
@@ -37,9 +47,9 @@ class DonorDashboardPage extends Component {
 		
 		return(
 			<div className="DonorDashboardPage">
-			<h3 className="dashboard-header">Welcome to your dashboard {donor.firstName}</h3>
+			<h3 className="dashboard-header animated fadeInLeft">Welcome to your dashboard {donor.firstName}</h3>
 			<div className="container">
-			<div className="row donor-dashboard-row">
+			<div className="row donor-dashboard-row animated fadeInUpBig">
 				<div className="col-md-4">
 					<h5>Recent Updates from Your Organizations</h5>
 				</div>
@@ -75,7 +85,13 @@ class DonorDashboardPage extends Component {
 }
 
 function mapStateToProps({ user }) {
-	return { donor: user[0], favouriteOrgs: user[1] }
+	if(user.donor) {
+		console.log('donor: ', user.donor)
+		console.log('donor credits: ', user.donor.credits)
+	}
+	// return { donor: user[0], favouriteOrgs: user[1] }
+	//use this if I do 'return action.payload.data' in the userReducer:
+	return { donor: user.donor, favouriteOrgs: user.favouriteOrgs }
 }
 
 export default connect(mapStateToProps, { fetchDonor })(DonorDashboardPage);
