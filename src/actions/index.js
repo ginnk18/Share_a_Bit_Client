@@ -36,6 +36,23 @@ export function fetchOrganization(id) {
 
 export function fetchDonor(id) {
 	const request = axios.get(`${ROOT_URL}/users/${id}`)
+	console.log('request from fetchDonor: ', request)
+	return {
+		type: FETCH_DONOR,
+		payload: request
+	}
+}
+
+//Handling Stripe tokens:
+
+export function handleToken(token) {
+	const request = axios.post(`${ROOT_URL}/stripe`,
+					token,
+					{
+						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
+					}
+					);
+	console.log('request from handleToken: ', request)
 	return {
 		type: FETCH_DONOR,
 		payload: request

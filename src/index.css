@@ -18,6 +18,7 @@ body {
   /*background: linear-gradient(#8ADD9D, transparent);*/
   background: transparent;
   /*border-bottom: 1px solid #1C5217;*/
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 nav a {
@@ -43,11 +44,23 @@ nav span {
   cursor: pointer;
 }
 
+/*Home Page Styling*/
+
+.HomePage h1 {
+  padding: 50px;
+  margin-bottom: 20px;
+  /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);*/
+  /*border: 2px #1C5217 solid;*/
+  border-radius: 5px;
+  /*background-color: #8BFF93;*/
+}
+
 /*Styling Organzation Index */
 
 .org-index-item {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .card-body a {
@@ -72,6 +85,10 @@ nav span {
   cursor: pointer;
 }
 
+.OrganizationsShowPage .btn {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 /*Styling Donor Dashboard*/
 
 .DonorDashboardPage {
@@ -90,7 +107,7 @@ nav span {
   list-style: none;
 }
 
-.recent-donations {
+.recent-donations, .manage-credits {
   border-bottom: 2px #1C5217 solid;
   padding-bottom: 10px;
   margin-bottom: 10px;
@@ -98,6 +115,28 @@ nav span {
 
 .fav-org-list-item {
   margin-bottom: 10px;
+}
+
+.donor-dashboard-row {
+  padding-top: 10px;
+  padding-bottom: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px #1C5217 solid;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.donor-dashboard-row h5 {
+  font-family: 'Spectral SC', serif;
+}
+
+.what-are-credits {
+  font-size: small;
+}
+
+/*Styling Donation to Organization Form: */
+
+.DonationToOrganizationForm {
+  font-family: Verdana, Geneva, sans-serif;
 }
 
 /*Styling footer */

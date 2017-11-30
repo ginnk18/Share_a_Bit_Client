@@ -32,10 +32,11 @@ class App extends Component {
 	    const jwt = localStorage.getItem('jwt');
 	    if (jwt) {
 	      const payload = jwtDecode(jwt);
-	      this.setState({user: payload, flash: 'Welcome, thanks for signing in!'});
-	      setTimeout(() => {
-	      	this.clearFlash()
-	      }, 5000)
+	      this.setState({user: payload})
+	      // this.setState({user: payload, flash: 'Welcome, thanks for signing in!'});
+	      // setTimeout(() => {
+	      // 	this.clearFlash()
+	      // }, 5000)
 	    }
 	    return this.state.user;
   	}

@@ -3,7 +3,8 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOrganization } from '../actions';
-import { Favourite } from '../lib/requests';
+import { Favourite, Donation } from '../lib/requests';
+import DonationToOrganizationForm from './DonationToOrganizationForm';
 
 class OrganizationsShowPage extends Component {
 	constructor(props) {
@@ -14,6 +15,7 @@ class OrganizationsShowPage extends Component {
 		}
 
 		this.favourite = this.favourite.bind(this);
+		this.donateToOrg = this.donateToOrg.bind(this);
 	}
 
 	componentDidMount() {
@@ -31,7 +33,7 @@ class OrganizationsShowPage extends Component {
 					<div className="card campaign-item">
 						<div className="card-body">
 							<div className="card-title">{campaign.name}</div>
-							<button className="btn btn-success">Donate to this campaign</button>
+							<button className="btn btn-success">Give credits to this campaign</button>
 						</div>
 					</div>
 				</div>
@@ -55,11 +57,22 @@ class OrganizationsShowPage extends Component {
 			})
 	}
 
+	donateToOrg(orgId, params) {
+		Donation 
+			.donationToOrg(orgId, params)
+			.then(data => {
+				if(!data.error) {
+					this.props.history.push(`/organizations/${orgId}`)
+					this.setState({flash: 'Thanks for your donation!'})
+					console.log(this.state.flash)
+				} else {
+					console.log(data);
+				}
+			})
+	}
+
 	render() {
-		const { org } = this.props;
-		const { campaigns } = this.props;
-		const { userFavourite } = this.props;
-		console.log(userFavourite);
+		const { org, campaigns, userFavourite } = this.props;
 
 		if (!org || !campaigns) {
 			return <div>Loading Non-profit data...</div>
@@ -77,19 +90,46 @@ class OrganizationsShowPage extends Component {
 					}
 					
 					<p>{org.description}</p>
-					<button className="btn btn-success ml-auto">Donate to {org.name}</button>
+					<button
+						className="btn btn-success ml-auto"
+						data-toggle="modal" 
+						data-target="#exampleModal"
+					>
+						Give credits to {org.name}
+					</button>
 				</div>
 				<h3><strong>Current Campaigns</strong></h3>
-				<div className="row">
+				<div className="row animated bounceInUp">
 					{this.renderCampaigns()}
 				</div>
+
+			{/*Modal for giving donate to Organization*/}
+				<div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		          <div className="modal-dialog" role="document">
+		            <div className="modal-content">
+		              <div className="modal-header">
+		                <h5 className="modal-title" id="exampleModalLabel">Give Credits to {org.name}</h5>
+		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
+		                </button>
+		              </div>
+		            <div className="modal-body">
+		              
+		 				<DonationToOrganizationForm 
+		 					onSubmit={this.donateToOrg} 
+		 					orgName={org.name} 
+		 					orgId={org.id} 
+		 				/>
+
+		            </div>
+		          </div>
+		        </div>
+		      </div>
 			</div>
 		);
 	}
 }
 
 function mapStateToProps({ orgs }, ownProps) {
-	console.log('Orgs from store: ', orgs)
 	return { org: orgs[0], campaigns: orgs[1], userFavourite: orgs[2] }
 }
 
