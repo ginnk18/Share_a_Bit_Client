@@ -43,3 +43,22 @@ export const Favourite = {
 		})
 	}
 }
+
+export const Donation = {
+	donationToOrg(orgId, params) {
+		return fetch(
+			`${ROOT_URL}/organizations/${orgId}/donate`,
+			{
+				method: 'POST',
+				headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'},
+				body: JSON.stringify(params)
+			}
+		).then(res => {
+			if(res.status === 200) {
+				return res.json();
+			} else {
+				return {error: 'You do not have enough credits to make that donation.'};
+			}
+		})
+	}
+}

@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOrganization } from '../actions';
-import { Favourite } from '../lib/requests';
+import { Favourite, Donation } from '../lib/requests';
 import DonationToOrganizationForm from './DonationToOrganizationForm';
 
 class OrganizationsShowPage extends Component {
@@ -56,6 +56,18 @@ class OrganizationsShowPage extends Component {
 			})
 	}
 
+	donateToOrg(orgId, params) {
+		Donation 
+			.donationToOrg(orgId, params)
+			.then(data => {
+				if(!data.error) {
+					console.log(data);
+				} else {
+					console.log(data);
+				}
+			})
+	}
+
 	render() {
 		const { org, campaigns, userFavourite } = this.props;
 
@@ -99,7 +111,11 @@ class OrganizationsShowPage extends Component {
 		              </div>
 		            <div className="modal-body">
 		              
-		 				<DonationToOrganizationForm orgName={org.name} orgId={org.id} />
+		 				<DonationToOrganizationForm 
+		 					onSubmit={this.donateToOrg} 
+		 					orgName={org.name} 
+		 					orgId={org.id} 
+		 				/>
 
 		            </div>
 		          </div>
