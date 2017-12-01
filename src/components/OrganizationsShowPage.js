@@ -21,6 +21,7 @@ class OrganizationsShowPage extends Component {
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
+		console.log(id);
 		this.props.fetchOrganization(id);
 	}
 

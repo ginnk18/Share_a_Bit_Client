@@ -181,6 +181,20 @@ nav span {
   font-family: Verdana, Geneva, sans-serif;
 }
 
+/*Styling ORG Dashboard */
+
+.org-dashboard-row {
+  padding-top: 10px;
+  padding-bottom: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px #1C5217 solid;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.org-dashboard-row h5 {
+  font-family: 'Spectral SC', serif;
+}
+
 /*Styling footer */
 
 .footer {

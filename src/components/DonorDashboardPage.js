@@ -144,13 +144,8 @@ class DonorDashboardPage extends Component {
 	}
 }
 
-function mapStateToProps({ user }) {
-	if(user.donor) {
-		console.log('Orgs Donated TO: ', user.orgsDonatedTo)
-	}
-	// return { donor: user[0], favouriteOrgs: user[1] }
-	//use this if I do 'return action.payload.data' in the userReducer:
-	return { donor: user.donor, favouriteOrgs: user.favouriteOrgs, transactions: user.transactions, orgsDonatedTo: user.orgsDonatedTo }
+function mapStateToProps({ userDonor }) {
+	return { donor: userDonor.donor, favouriteOrgs: userDonor.favouriteOrgs, transactions: userDonor.transactions, orgsDonatedTo: userDonor.orgsDonatedTo }
 }
 
 export default connect(mapStateToProps, { fetchDonor })(DonorDashboardPage);

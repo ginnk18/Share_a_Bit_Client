@@ -164,7 +164,7 @@ class App extends Component {
 	        	<AuthRoute 
 	        		isAuthenticated={this.isSignedIn()}
 	        		path="/org_dashboard" 
-	        		component={OrgDashboardPage} 
+	        		render={props => <OrgDashboardPage {...props} userId={this.state.user.id} />} 
 	        	/>
 	        	<Route path="/" component={HomePage} />
 	        </Switch>
