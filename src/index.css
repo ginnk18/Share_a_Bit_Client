@@ -11,6 +11,11 @@ body {
   min-height: 100vh;
 }
 
+a {
+  color: #1A7A16;
+  /*color: #8ADD9D;*/
+}
+
 /*NavBar Styling*/
 
 .share-navbar {
