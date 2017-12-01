@@ -48,7 +48,10 @@ class DonorDashboardPage extends Component {
 			let dateFormat = year + '-' + month + '-' + day;
 			count += 1;
 			return (
-				<li>You donated ${transaction.amount} to {this.props.orgsDonatedTo[count].name} on {dateFormat}</li>
+				<li
+					key={transaction.id}
+					className="donation-history-list-item"
+				>You donated ${transaction.amount} to {this.props.orgsDonatedTo[count].name} on {dateFormat}</li>
 			);
 		})
 	}
@@ -62,6 +65,10 @@ class DonorDashboardPage extends Component {
 		if (!donor && !favouriteOrgs && !transactions && !orgsDonatedTo) {
 			return <div>Loading your dashboard...</div>
 		}
+
+		eval(`$(function () {
+  			$('[data-toggle="popover"]').popover()
+		})`)
 		
 		return(
 			<div className="DonorDashboardPage">
@@ -76,7 +83,17 @@ class DonorDashboardPage extends Component {
 						<h5>Manage your Credits</h5>
 						<p>Your Credits: {donor.credits}</p>
 						<Payments />
-						<a className="what-are-credits" href="#">What are credits?</a>
+						<a
+							className="what-are-credits" 
+							href="#"
+							data-toggle="popover"
+							data-placement="left"
+							title="We're glad you asked!"
+							data-content="On Share a Bit, you will send organizations credits to donate
+							to them. You can easily load up your account with credits by clicking on the
+							'Add Credits' button above. Each credit is worth $1. You can buy $5 worth of credits
+							at a time. If you have more questions please call 1-800-401-7890."
+						>What are credits?</a>
 					</div>
 					<div className="row">
 						<h5>Browse our new Organizations</h5>
@@ -112,7 +129,7 @@ class DonorDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<ul>
+		            	<ul className="donation-history-list">
 		              		{this._renderDonationHistory()}
 		              	</ul>
 		            </div>

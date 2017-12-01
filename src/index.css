@@ -148,6 +148,19 @@ nav span {
   font-size: small;
 }
 
+.donation-history-list {
+  list-style: none;
+  font-family: Verdana, Geneva, sans-serif;
+  padding-left: 0px;
+}
+
+.donation-history-list-item {
+  padding: 10px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
 /*Styling Donation to Organization Form: */
 
 .DonationToOrganizationForm {
