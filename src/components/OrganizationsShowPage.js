@@ -11,7 +11,8 @@ class OrganizationsShowPage extends Component {
 		super(props)
 
 		this.state = {
-			flash: ''
+			flash: '',
+			error: ''
 		}
 
 		this.favourite = this.favourite.bind(this);
@@ -66,7 +67,8 @@ class OrganizationsShowPage extends Component {
 					this.setState({flash: 'Thanks for your donation!'})
 					console.log(this.state.flash)
 				} else {
-					console.log(data);
+					this.setState({error: data.error})
+					console.log(this.state.error)
 				}
 			})
 	}

@@ -43,7 +43,7 @@ class DonorDashboardPage extends Component {
 		const {transactions} = this.props;
 		const {orgsDonatedTo} = this.props;
 
-		if (!donor && !favouriteOrgs && !transactions) {
+		if (!donor && !favouriteOrgs && !transactions && !orgsDonatedTo) {
 			return <div>Loading your dashboard...</div>
 		}
 		
