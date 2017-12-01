@@ -18,12 +18,6 @@ class DonorDashboardPage extends Component {
 		this.props.fetchDonor(this.props.userId);
 	}
 
-	// componentWillReceiveProps(nextProps) {
-	// 	this.setState({credits: nextProps.donor.credits})
-	// 	//doesnt work when I go to another page on website and then
-	// 	//go back to the dashboard the credits are back to zero :S :S :S
-	// }
-
 	_renderFavouriteOrgs() {
 		return _.map(this.props.favouriteOrgs, org => {
 			return (
@@ -36,6 +30,28 @@ class DonorDashboardPage extends Component {
 	// bug - only the first org clicked on will go to the correct show page :S 
 	//then after the first one is clicked, all the other org links go to that first org
 	//show page until I reload the page :S :S :S :S
+
+// 	var dateFieldValue= Xrm.Page.getAttribute('datefieldname').getValue();
+// // create the yyyy-mm-dd string
+// var year = dateFieldValue.getFullYear()+"";
+// var month = (dateFieldValue.getMonth()+1)+"";
+// var day = dateFieldValue.getDate()+"";
+// var dateFormat = year + "-" + month + "-" + day;
+
+	_renderDonationHistory() {
+		let count = -1;
+		return _.map(this.props.transactions, transaction => {
+			const transactionDate = new Date(transaction.created_at)
+			let year = transactionDate.getFullYear()+"";
+			let month = (transactionDate.getMonth()+1)+"";
+			let day = transactionDate.getDate()+"";
+			let dateFormat = year + '-' + month + '-' + day;
+			count += 1;
+			return (
+				<li>You donated ${transaction.amount} to {this.props.orgsDonatedTo[count].name} on {dateFormat}</li>
+			);
+		})
+	}
 
 	render() {
 		const {donor} = this.props;
@@ -72,7 +88,11 @@ class DonorDashboardPage extends Component {
 						<p>You donated ${transactions[0].amount} to {orgsDonatedTo[0].name}</p>
 						<p>You donated ${transactions[1].amount} to {orgsDonatedTo[1].name}</p>
 						<p>You donated ${transactions[2].amount} to {orgsDonatedTo[2].name}</p>
-						<a href="#">View all donation history</a>
+						<a 
+							href="#" 
+							data-toggle="modal" 
+							data-target="#exampleModal"
+						>View all donation history</a>
 					</div>
 					<div>
 						<h5>See what your favourite organizations are up to...</h5>
@@ -81,6 +101,24 @@ class DonorDashboardPage extends Component {
 				</div>
 			</div>
 			</div>
+
+			{/*Modal for All Donation History*/}
+			<div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		          <div className="modal-dialog" role="document">
+		            <div className="modal-content">
+		              <div className="modal-header">
+		                <h5 className="modal-title" id="exampleModalLabel">Your Donation History</h5>
+		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
+		                </button>
+		              </div>
+		            <div className="modal-body">
+		            	<ul>
+		              		{this._renderDonationHistory()}
+		              	</ul>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
 			</div>
 		);
 

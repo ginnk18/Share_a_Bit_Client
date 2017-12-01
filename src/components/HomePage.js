@@ -28,7 +28,7 @@ class HomePage extends Component {
   						<h5 className="pl-5">Welcome to Share a Bit. Sign up to safely and easily manage
   						your donations to organizations that keep the world turning.</h5>
 					</div>
-  					<img style={styles.img} src="/images/earth-leaves.png" />
+  					<img style={styles.img} className="animated fadeIn" src="/images/earth-leaves.png" />
   				</div>
 
 			</div>
