@@ -4,6 +4,7 @@ import { FETCH_ORGANIZATIONS, FETCH_ORGANIZATION } from '../actions';
 export default function (state = {}, action) {
 	switch(action.type) {
 		case FETCH_ORGANIZATION:
+			// console.log(action)
 			return [...state, action.payload.data.organization, action.payload.data.campaigns, action.payload.data.userFavourite]
 			// return  { ...state, action.payload.data.organization, action.payload.data.campaigns }
 		case FETCH_ORGANIZATIONS:

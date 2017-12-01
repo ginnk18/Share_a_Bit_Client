@@ -86,8 +86,8 @@ class DonorDashboardPage extends Component {
 							data-toggle="popover"
 							data-placement="left"
 							title="We're glad you asked!"
-							data-content="On Share a Bit, you will send organizations credits to donate
-							to them. You can easily load up your account with credits by clicking on the
+							data-content="On Share a Bit, you will donate to organizations by transfering 
+							credits to them. You can easily load up your account with credits by clicking on the
 							'Add Credits' button above. Each credit is worth $1. You can buy $5 worth of credits
 							at a time. If you have more questions please call 1-800-401-7890."
 						>What are credits?</a>

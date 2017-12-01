@@ -35,7 +35,7 @@ export function fetchOrganization(id) {
 }
 
 export function fetchDonor(id) {
-	const request = axios.get(`${ROOT_URL}/users/${id}`)
+	const request = axios.get(`${ROOT_URL}/users/donor/${id}`)
 	console.log('request from fetchDonor: ', request)
 	return {
 		type: FETCH_DONOR,
