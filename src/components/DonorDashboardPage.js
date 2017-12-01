@@ -31,13 +31,6 @@ class DonorDashboardPage extends Component {
 	//then after the first one is clicked, all the other org links go to that first org
 	//show page until I reload the page :S :S :S :S
 
-// 	var dateFieldValue= Xrm.Page.getAttribute('datefieldname').getValue();
-// // create the yyyy-mm-dd string
-// var year = dateFieldValue.getFullYear()+"";
-// var month = (dateFieldValue.getMonth()+1)+"";
-// var day = dateFieldValue.getDate()+"";
-// var dateFormat = year + "-" + month + "-" + day;
-
 	_renderDonationHistory() {
 		let count = -1;
 		return _.map(this.props.transactions, transaction => {
@@ -51,7 +44,11 @@ class DonorDashboardPage extends Component {
 				<li
 					key={transaction.id}
 					className="donation-history-list-item"
-				>You donated ${transaction.amount} to {this.props.orgsDonatedTo[count].name} on {dateFormat}</li>
+				>
+				<span>${transaction.amount}</span>
+				<span>{this.props.orgsDonatedTo[count].name}</span>
+				<span>{dateFormat}</span>
+				</li>
 			);
 		})
 	}
@@ -130,6 +127,11 @@ class DonorDashboardPage extends Component {
 		              </div>
 		            <div className="modal-body">
 		            	<ul className="donation-history-list">
+		            		<li className="donation-history-header">
+		            			<span>Amount</span>
+		            			<span>Organization</span>
+		            			<span>Date</span>
+		            		</li>
 		              		{this._renderDonationHistory()}
 		              	</ul>
 		            </div>

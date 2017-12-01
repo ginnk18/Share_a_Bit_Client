@@ -47,7 +47,7 @@ class App extends Component {
   		this.props.history.push('/') // not working ?? (App is wrapped in Route)
   		setTimeout(() => {
 	      	this.clearFlash()
-	    }, 5000)
+	    }, 3000)
   	}
 
 
