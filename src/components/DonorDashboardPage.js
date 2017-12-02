@@ -99,9 +99,21 @@ class DonorDashboardPage extends Component {
 				<div className="col-md-4">
 					<div className="recent-donations">
 						<h5>Your Recent donations: </h5>
-						<p>You donated ${transactions[0].amount} to {orgsDonatedTo[0].name}</p>
-						<p>You donated ${transactions[1].amount} to {orgsDonatedTo[1].name}</p>
-						<p>You donated ${transactions[2].amount} to {orgsDonatedTo[2].name}</p>
+						{
+							transactions[0] && orgsDonatedTo[0]
+								? <p>You donated ${transactions[0].amount} to {orgsDonatedTo[1].name}</p>
+								: <p>No recent donations</p>
+						}
+						{
+							transactions[1] && orgsDonatedTo[1]
+								? <p>You donated ${transactions[1].amount} to {orgsDonatedTo[1].name}</p>
+								: <p></p>
+						}
+						{
+							transactions[2] && orgsDonatedTo[2]
+								? <p>You donated ${transactions[2].amount} to {orgsDonatedTo[2].name}</p>
+								: <p></p>
+						}
 						<a 
 							href="#" 
 							data-toggle="modal" 

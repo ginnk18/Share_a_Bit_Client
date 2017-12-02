@@ -130,11 +130,11 @@ class OrgDashboardPage extends Component {
 								{this._renderRecentBenefactions()}
 								<h5>Recent Donors</h5>
 								<p><a href="#">{donors[0].firstName} {donors[0].lastName}</a> sent you ${transactions[0].amount}
-								<button className="btn-success align-self-start">Send Thanks</button></p>
+								<button className="btn-success align-self-start ml-2">Send Thanks</button></p>
 								<p><a href="#">{donors[1].firstName} {donors[1].lastName}</a> sent you ${transactions[1].amount}
-								<button className="btn-success align-self-start">Send Thanks</button></p>
+								<button className="btn-success align-self-start ml-2">Send Thanks</button></p>
 								<p><a href="#">{donors[2].firstName} {donors[2].lastName}</a> sent you ${transactions[2].amount}
-								<button className="btn-success align-self-start">Send Thanks</button></p>
+								<button className="btn-success align-self-start ml-2">Send Thanks</button></p>
 								
 								<a 
 									href="#"
