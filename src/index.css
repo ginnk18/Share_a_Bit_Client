@@ -122,10 +122,18 @@ nav span {
   list-style: none;
 }
 
-.recent-donations, .manage-credits {
+.recent-donations, 
+.manage-credits, 
+.manage-donations, 
+.most-freq-donors, 
+.org-updates-section,
+.org-campaigns-section,
+.create-an-update {
   border-bottom: 2px #1C5217 solid;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .fav-org-list-item {
