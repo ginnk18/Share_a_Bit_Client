@@ -9,6 +9,28 @@ class OrgDashboardPage extends Component {
 		this.props.fetchOrgUser(this.props.userId);
 	}
 
+	_renderBenefactionHistory() {
+		let count = -1;
+		return _.map(this.props.transactions, transaction => {
+			const transactionDate = new Date(transaction.created_at)
+			let year = transactionDate.getFullYear()+"";
+			let month = (transactionDate.getMonth()+1)+"";
+			let day = transactionDate.getDate()+"";
+			let dateFormat = year + '-' + month + '-' + day;
+			count += 1;
+			return (
+				<li key={transaction.id} className="donation-history-list-item">
+				<span>${transaction.amount}</span>
+				<span>
+					<a href="#">
+					{this.props.donors[count].firstName} {this.props.donors[count].lastName}
+					</a></span>
+				<span>{dateFormat}</span>
+				</li>
+			);
+		})
+	}
+
 	_renderRecentBenefactions() {
 		const {transactions} = this.props;
 		const recentTransactions = [transactions[0], transactions[1], transactions[2]]
@@ -107,11 +129,18 @@ class OrgDashboardPage extends Component {
 								<h5>Recent Benefactions</h5>
 								{this._renderRecentBenefactions()}
 								<h5>Recent Donors</h5>
-								<p><a href="#">{donors[0].firstName} {donors[0].lastName}</a> sent you ${transactions[0].amount}</p>
-								<p><a href="#">{donors[1].firstName} {donors[1].lastName}</a> sent you ${transactions[1].amount}</p>
-								<p><a href="#">{donors[2].firstName} {donors[2].lastName}</a> sent you ${transactions[2].amount}</p>
-								<button className="btn-success align-self-start">Send Thanks</button>
-								<a href="#">View all Benefactions and Donors</a>
+								<p><a href="#">{donors[0].firstName} {donors[0].lastName}</a> sent you ${transactions[0].amount}
+								<button className="btn-success align-self-start">Send Thanks</button></p>
+								<p><a href="#">{donors[1].firstName} {donors[1].lastName}</a> sent you ${transactions[1].amount}
+								<button className="btn-success align-self-start">Send Thanks</button></p>
+								<p><a href="#">{donors[2].firstName} {donors[2].lastName}</a> sent you ${transactions[2].amount}
+								<button className="btn-success align-self-start">Send Thanks</button></p>
+								
+								<a 
+									href="#"
+									data-toggle="modal"
+									data-target="#benefactionHistory"
+								>View all Benefactions and Donors</a>
 							</div>
 						</div>
 					</div>
@@ -144,6 +173,29 @@ class OrgDashboardPage extends Component {
 		              </div>
 		            <div className="modal-body">
 		            	<h1>Successfully inside modal!</h1>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+
+		  {/*Modal For All Benefaction and Donor History*/}
+		      <div className="modal fade" id="benefactionHistory" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		          <div className="modal-dialog" role="document">
+		            <div className="modal-content">
+		              <div className="modal-header">
+		                <h5 className="modal-title" id="benefactionHistoryLabel">Benefaction and Donor History</h5>
+		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
+		                </button>
+		              </div>
+		            <div className="modal-body">
+		            	<ul className="donation-history-list">
+		            		<li className="donation-history-header">
+		            			<span>Amount</span>
+		            			<span>Donor</span>
+		            			<span>Date</span>
+		            		</li>
+		            		{this._renderBenefactionHistory()}
+		            	</ul>
 		            </div>
 		          </div>
 		        </div>
