@@ -48,7 +48,13 @@ class OrgDashboardPage extends Component {
 	}
 
 	render() {
-		const { org, campaigns, transactions, donors } = this.props;
+		const { org, 
+				campaigns, 
+				transactions, 
+				donors,
+				freqDonorTransactions,
+				mostFreqDonors 
+			} = this.props;
 
 		if (!org) {
 			return <div>Loading your dashboard...</div>
@@ -114,7 +120,12 @@ class OrgDashboardPage extends Component {
 							</div>
 							<div className="row most-freq-donors">
 								<h5>Your Most Frequent Donors</h5>
-								<button className="btn-success">Send Recognition</button>
+								<p><a href="#">{mostFreqDonors[0].firstName} {mostFreqDonors[0].lastName}</a> has donated {freqDonorTransactions[0].count} times.</p>
+								<button className="btn-success mb-2">Send Recognition</button>
+								<p><a href="#">{mostFreqDonors[1].firstName} {mostFreqDonors[1].lastName}</a> has donated {freqDonorTransactions[1].count} times.</p>
+								<button className="btn-success mb-2">Send Recognition</button>
+								<p><a href="#">{mostFreqDonors[2].firstName} {mostFreqDonors[2].lastName}</a> has donated {freqDonorTransactions[2].count} times.</p>
+								<button className="btn-success mb-2">Send Recognition</button>
 							</div>
 						</div>
 						<div className="col-md-4">
@@ -212,7 +223,9 @@ function mapStateToProps({ userOrg }) {
 	return { org: userOrg.organization, 
 			 campaigns: userOrg.campaigns, 
 			 transactions: userOrg.transactions,
-			 donors: userOrg.donors }
+			 donors: userOrg.donors,
+			 freqDonorTransactions: userOrg.freqDonorTransactions,
+			 mostFreqDonors: userOrg.mostFreqDonors }
 }
 
 export default connect(mapStateToProps, { fetchOrgUser })(OrgDashboardPage);

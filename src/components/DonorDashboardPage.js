@@ -92,7 +92,7 @@ class DonorDashboardPage extends Component {
 							at a time. If you have more questions please call 1-800-401-7890."
 						>What are credits?</a>
 					</div>
-					<div className="row">
+					<div className="row manage-credits">
 						<h5>Browse our new Organizations</h5>
 					</div>
 				</div>
@@ -101,7 +101,7 @@ class DonorDashboardPage extends Component {
 						<h5>Your Recent donations: </h5>
 						{
 							transactions[0] && orgsDonatedTo[0]
-								? <p>You donated ${transactions[0].amount} to {orgsDonatedTo[1].name}</p>
+								? <p>You donated ${transactions[0].amount} to {orgsDonatedTo[0].name}</p>
 								: <p>No recent donations</p>
 						}
 						{
@@ -120,7 +120,7 @@ class DonorDashboardPage extends Component {
 							data-target="#exampleModal"
 						>View all donation history</a>
 					</div>
-					<div>
+					<div className="recent-donations">
 						<h5>See what your favourite organizations are up to...</h5>
 						<ul className="donorFavOrgs">{this._renderFavouriteOrgs()}</ul>
 					</div>
