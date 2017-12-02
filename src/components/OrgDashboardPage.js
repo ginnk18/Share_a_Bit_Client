@@ -47,6 +47,20 @@ class OrgDashboardPage extends Component {
 		})
 	}
 
+	_renderFreqDonorList() {
+		const { freqDonorTransactions, mostFreqDonors } = this.props;
+		let count = -1;
+		return _.map(mostFreqDonors, mostFreqDonor => {
+			count += 1;
+			return (
+				<li className="donation-history-list-item">
+					<span><a href="#">{mostFreqDonor.firstName} {mostFreqDonor.lastName}</a></span>
+					<span>{freqDonorTransactions[count].count} times</span>
+				</li>
+			);
+		})
+	}
+
 	render() {
 		const { org, 
 				campaigns, 
@@ -126,6 +140,11 @@ class OrgDashboardPage extends Component {
 								<button className="btn-success mb-2">Send Recognition</button>
 								<p><a href="#">{mostFreqDonors[2].firstName} {mostFreqDonors[2].lastName}</a> has donated {freqDonorTransactions[2].count} times.</p>
 								<button className="btn-success mb-2">Send Recognition</button>
+								<a 
+									href="#"
+									data-toggle="modal"
+									data-target="#FreqDonorList"
+								>View Donor List by Frequency of Donations</a>
 							</div>
 						</div>
 						<div className="col-md-4">
@@ -206,6 +225,27 @@ class OrgDashboardPage extends Component {
 		            			<span>Date</span>
 		            		</li>
 		            		{this._renderBenefactionHistory()}
+		            	</ul>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+
+		  	{/*Modal For Displaying All Donors listed by Frequency of Donation*/}
+		      <div className="modal fade" id="FreqDonorList" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		          <div className="modal-dialog" role="document">
+		            <div className="modal-content">
+		              <div className="modal-header">
+		                <h5 className="modal-title" id="FreqDonorListLabel">All Donors In Order of Donation Frequency</h5>
+		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
+		                </button>
+		              </div>
+		            <div className="modal-body">
+		            	<ul className="donation-history-list">
+		            		<li className="donation-history-header">
+		            			<span>Donor</span>
+		            		</li>
+		            		{this._renderFreqDonorList()}
 		            	</ul>
 		            </div>
 		          </div>
