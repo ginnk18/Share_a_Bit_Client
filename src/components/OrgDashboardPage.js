@@ -244,6 +244,7 @@ class OrgDashboardPage extends Component {
 		            	<ul className="donation-history-list">
 		            		<li className="donation-history-header">
 		            			<span>Donor</span>
+		            			<span>Donated</span>
 		            		</li>
 		            		{this._renderFreqDonorList()}
 		            	</ul>
