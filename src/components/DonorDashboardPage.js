@@ -79,6 +79,7 @@ class DonorDashboardPage extends Component {
 					<div className="row flex-column manage-credits">
 						<h5>Manage your Credits</h5>
 						<p>Your Credits: {donor.credits}</p>
+						<p>Your Bitcredits: {donor.bitcredits}</p>
 						<Payments />
 						<a
 							className="what-are-credits" 
@@ -89,8 +90,10 @@ class DonorDashboardPage extends Component {
 							data-content="On Share a Bit, you will donate to organizations by transfering 
 							credits to them. You can easily load up your account with credits by clicking on the
 							'Add Credits' button above. Each credit is worth $1. You can buy $5 worth of credits
-							at a time. If you have more questions please call 1-800-401-7890."
-						>What are credits?</a>
+							at a time. On Share a Bit, you also have the option of transfering bitcoin to an organization.
+							Bitcredits keep track of how much bitcoin you have loaded into your account. 
+							If you have more questions please call 1-800-401-7890."
+						>What are credits and bitcredits?</a>
 					</div>
 					<div className="row manage-credits">
 						<h5>Browse our new Organizations</h5>
