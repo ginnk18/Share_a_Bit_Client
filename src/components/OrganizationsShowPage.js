@@ -35,7 +35,7 @@ class OrganizationsShowPage extends Component {
 					<div className="card campaign-item">
 						<div className="card-body">
 							<div className="card-title">{campaign.name}</div>
-							<button className="btn btn-success">Give credits to this campaign</button>
+							<button className="btn btn-success">Give to this campaign</button>
 						</div>
 					</div>
 				</div>
@@ -70,8 +70,7 @@ class OrganizationsShowPage extends Component {
 	      			this.clearFlash()
 	    			}, 3000)
 				} else {
-					this.setState({error: data.error})
-					console.log(this.state.error)
+					this.setState({flash: data.error})
 				}
 			})
 	}
@@ -117,7 +116,7 @@ class OrganizationsShowPage extends Component {
 						data-toggle="modal" 
 						data-target="#exampleModal"
 					>
-						Give credits to {org.name}
+						Give to {org.name}
 					</button>
 				</div>
 				<h3><strong>Current Campaigns</strong></h3>
@@ -130,7 +129,7 @@ class OrganizationsShowPage extends Component {
 		          <div className="modal-dialog" role="document">
 		            <div className="modal-content">
 		              <div className="modal-header">
-		                <h5 className="modal-title" id="exampleModalLabel">Give Credits to {org.name}</h5>
+		                <h5 className="modal-title" id="exampleModalLabel">Give to {org.name}</h5>
 		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
 		                </button>
 		              </div>
