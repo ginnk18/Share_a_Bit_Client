@@ -203,6 +203,12 @@ nav span {
   font-family: 'Spectral SC', serif;
 }
 
+/*Create Update form*/ 
+
+.form-create-update {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 /*Styling footer */
 
 .footer {

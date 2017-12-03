@@ -66,12 +66,26 @@ class OrganizationsShowPage extends Component {
 				if(!data.error) {
 					this.props.history.push(`/organizations/${orgId}`)
 					this.setState({flash: 'Thanks for your donation!'})
-					console.log(this.state.flash)
+					setTimeout(() => {
+	      			this.clearFlash()
+	    			}, 3000)
 				} else {
 					this.setState({error: data.error})
 					console.log(this.state.error)
 				}
 			})
+	}
+
+	_renderFlashMessage() {
+		return (
+			<div className="alert alert-success alert-dismissible fade show" role="alert">
+				{this.state.flash}
+			</div>
+		);
+	}
+
+	clearFlash() {
+		this.setState({flash: ''})
 	}
 
 	render() {
@@ -83,6 +97,11 @@ class OrganizationsShowPage extends Component {
 
 		return (
 			<div className="OrganizationsShowPage container">
+			{
+	        	this.state.flash 
+	        		? this._renderFlashMessage()
+	        		: <div></div>
+	        }
 				<Link to="/organizations">Back</Link>
 				<div className="row">
 					<h2>{org.name}</h2>
