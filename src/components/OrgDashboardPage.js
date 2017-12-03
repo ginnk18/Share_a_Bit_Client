@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchOrgUser } from '../actions';
 import _ from 'lodash';
+import CreateUpdateForm from './CreateUpdateForm';
 
 class OrgDashboardPage extends Component {
 
@@ -151,6 +152,7 @@ class OrgDashboardPage extends Component {
 							<div className="row flex-column manage-credits">
 								<h5>Manage Your Credits</h5>
 								<p>Your Credits: {org.credits}</p>
+								<p>Your Bitcredits: {org.bitcredits}</p>
 								<button className="btn-success align-self-start">
 									Choose your Payout Method
 								</button>
@@ -202,7 +204,7 @@ class OrgDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<h1>Successfully inside modal!</h1>
+		            	<CreateUpdateForm />
 		            </div>
 		          </div>
 		        </div>

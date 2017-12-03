@@ -35,7 +35,7 @@ class OrganizationsShowPage extends Component {
 					<div className="card campaign-item">
 						<div className="card-body">
 							<div className="card-title">{campaign.name}</div>
-							<button className="btn btn-success">Give credits to this campaign</button>
+							<button className="btn btn-success">Give to this campaign</button>
 						</div>
 					</div>
 				</div>
@@ -66,12 +66,25 @@ class OrganizationsShowPage extends Component {
 				if(!data.error) {
 					this.props.history.push(`/organizations/${orgId}`)
 					this.setState({flash: 'Thanks for your donation!'})
-					console.log(this.state.flash)
+					setTimeout(() => {
+	      			this.clearFlash()
+	    			}, 3000)
 				} else {
-					this.setState({error: data.error})
-					console.log(this.state.error)
+					this.setState({flash: data.error})
 				}
 			})
+	}
+
+	_renderFlashMessage() {
+		return (
+			<div className="alert alert-success alert-dismissible fade show" role="alert">
+				{this.state.flash}
+			</div>
+		);
+	}
+
+	clearFlash() {
+		this.setState({flash: ''})
 	}
 
 	render() {
@@ -83,6 +96,11 @@ class OrganizationsShowPage extends Component {
 
 		return (
 			<div className="OrganizationsShowPage container">
+			{
+	        	this.state.flash 
+	        		? this._renderFlashMessage()
+	        		: <div></div>
+	        }
 				<Link to="/organizations">Back</Link>
 				<div className="row">
 					<h2>{org.name}</h2>
@@ -98,7 +116,7 @@ class OrganizationsShowPage extends Component {
 						data-toggle="modal" 
 						data-target="#exampleModal"
 					>
-						Give credits to {org.name}
+						Give to {org.name}
 					</button>
 				</div>
 				<h3><strong>Current Campaigns</strong></h3>
@@ -111,7 +129,7 @@ class OrganizationsShowPage extends Component {
 		          <div className="modal-dialog" role="document">
 		            <div className="modal-content">
 		              <div className="modal-header">
-		                <h5 className="modal-title" id="exampleModalLabel">Give Credits to {org.name}</h5>
+		                <h5 className="modal-title" id="exampleModalLabel">Give to {org.name}</h5>
 		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
 		                </button>
 		              </div>
