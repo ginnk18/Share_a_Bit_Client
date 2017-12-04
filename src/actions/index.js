@@ -4,6 +4,7 @@ export const FETCH_ORGANIZATIONS = 'fetch_organizations';
 export const FETCH_ORGANIZATION = 'fetch_organization';
 export const FETCH_DONOR = 'fetch_donor';
 export const FETCH_ORGUSER = 'fetch_orguser';
+export const FETCH_UPDATE = 'fetch_update';
 
 const ROOT_URL = 'http://localhost:3000/api';
 
@@ -37,7 +38,6 @@ export function fetchOrganization(id) {
 
 export function fetchDonor(id) {
 	const request = axios.get(`${ROOT_URL}/users/donor/${id}`)
-	console.log('Request inside of fetchDonor action: ', request)
 	return {
 		type: FETCH_DONOR,
 		payload: request
@@ -48,7 +48,6 @@ export function fetchDonor(id) {
 
 export async function fetchOrgUser(id) {
 	const request = await axios.get(`${ROOT_URL}/users/organization/${id}`)
-	console.log('Request inside of fetchOrgUser action: ', request)
 	return {
 		type: FETCH_ORGUSER,
 		payload: request
@@ -66,6 +65,19 @@ export function handleToken(token) {
 					);
 	return {
 		type: FETCH_DONOR,
+		payload: request
+	}
+}
+
+export function fetchUpdate(id) {
+	const request = axios.get(`${ROOT_URL}/updates/${id}`,
+					{
+						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
+					}
+					);
+	console.log('Request from fetchUpdate action: ', request)
+	return {
+		type: FETCH_UPDATE,
 		payload: request
 	}
 }

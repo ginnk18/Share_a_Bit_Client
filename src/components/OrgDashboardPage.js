@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchOrgUser } from '../actions';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import CreateUpdateForm from './CreateUpdateForm';
+import { Organization } from '../lib/requests';
 
 class OrgDashboardPage extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			flash: ''
+		}
+
+		this.createUpdate = this.createUpdate.bind(this);
+	}
+
+	_renderFlashMessage() {
+		return (
+			<div className="alert alert-success alert-dismissible fade show" role="alert">
+				{this.state.flash}
+			</div>
+		);
+	}
+
+	clearFlash() {
+		this.setState({flash: ''})
+	}
 
 	componentDidMount() {
 		this.props.fetchOrgUser(this.props.userId);
@@ -62,9 +85,47 @@ class OrgDashboardPage extends Component {
 		})
 	}
 
+	_renderUpdateIndex() {
+		const { updates } = this.props;
+
+		return _.map(updates, update => {
+			const updateDate = new Date(update.created_at)
+			let year = updateDate.getFullYear()+"";
+			let month = (updateDate.getMonth()+1)+"";
+			let day = updateDate.getDate()+"";
+			let dateFormat = year + '-' + month + '-' + day;
+			return (
+				<li className="donation-history-list-item">
+					<span><Link onClick={this.clearModal} to={`/updates/${update.id}`}>{update.title}</Link></span>
+					<span>{dateFormat}</span>
+				</li>
+			);
+		})
+	}
+
+	clearModal() {
+		eval(`$('#updateIndex').modal("toggle")`); 
+	}
+
+	createUpdate(params) {
+		Organization
+			.createUpdate(params)
+			.then(data => {
+				if(!data.error) {
+					this.setState({flash: 'Update Created!'})
+					setTimeout(() => {
+						this.clearFlash()
+					}, 3000)
+				} else {
+					this.setState({flash: data.error})
+				}
+			})
+	}
+
 	render() {
 		const { org, 
-				campaigns, 
+				campaigns,
+				updates, 
 				transactions, 
 				donors,
 				freqDonorTransactions,
@@ -81,6 +142,11 @@ class OrgDashboardPage extends Component {
 
 		return(
 			<div className="OrgDashboardPage">
+			{
+	        	this.state.flash 
+	        		? this._renderFlashMessage()
+	        		: <div></div>
+	        }
 				<h3 className="dashboard-header animated fadeInLeft">Welcome to your dashboard {org.name}</h3>
 				<div className="container">
 					<div className="row org-dashboard-row animated fadeInUpBig">
@@ -104,7 +170,13 @@ class OrgDashboardPage extends Component {
 							</div>
 							<div className="row org-updates-section">
 								<h5>Your Most Recent Update</h5>
-								<a href="#">View All Your Updates</a>
+								<h6><strong>{updates[0].title}</strong></h6>
+								<p>{updates[0].overview.slice(0, 200)}...<Link to={`/updates/${updates[0].id}`}>See More</Link></p>
+								<a 
+									href="#"
+									data-toggle="modal"
+									data-target="#updateIndex"
+								>View All Your Updates</a>
 							</div>
 						</div>
 						<div className="col-md-4">
@@ -204,7 +276,29 @@ class OrgDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<CreateUpdateForm />
+		            	<CreateUpdateForm onSubmit={this.createUpdate} />
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+
+		  {/*Modal For Update Index List*/}
+		      <div className="modal fade" id="updateIndex" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		          <div className="modal-dialog" role="document">
+		            <div className="modal-content">
+		              <div className="modal-header">
+		                <h5 className="modal-title" id="updateIndexLabel">Your Updates</h5>
+		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
+		                </button>
+		              </div>
+		            <div className="modal-body">
+		            	<ul className="donation-history-list">
+		            		<li className="update-index-header">
+		            			<span>Title</span>
+		            			<span>Date Created</span>
+		            		</li>
+		            		{this._renderUpdateIndex()}
+		            	</ul>
 		            </div>
 		          </div>
 		        </div>
@@ -260,11 +354,9 @@ class OrgDashboardPage extends Component {
 }
 
 function mapStateToProps({ userOrg }) {
-	if (userOrg.organization) {
-		console.log('UserOrg in mapStateToProps in OrgDashboardPage: ', userOrg)
-	}
 	return { org: userOrg.organization, 
-			 campaigns: userOrg.campaigns, 
+			 campaigns: userOrg.campaigns,
+			 updates: userOrg.updates, 
 			 transactions: userOrg.transactions,
 			 donors: userOrg.donors,
 			 freqDonorTransactions: userOrg.freqDonorTransactions,
