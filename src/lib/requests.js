@@ -54,7 +54,7 @@ export const Donation = {
 			}
 		).then(res => {
 			if(res.status === 200) {
-			   eval(`$('#exampleModal').modal("toggle")`); // hacky solution
+			   eval(`$('#exampleModal').modal("toggle")`); 
 				return res.json();
 			} else {
 				return {error: 'You do not have enough credits to make that donation.'};
