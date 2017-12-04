@@ -20,7 +20,7 @@ export default function DonationToOrganizationForm(props) {
 		<div className="DonationToOrganizationForm">
 			<p>Remember, 1 credit is equal to $1. Credits donated from this form will
 			go directly to {orgName}. If you would like to donate to a specific campaign, please
-			select one of the campaign donation buttons below.</p>
+			select one of the 'See Details' links of a campaign below.</p>
 			<form className="form-org-donation" onSubmit={handleSubmit}>
 				<label>Would you like to donate credits or bitcredits?</label>
 				<div>

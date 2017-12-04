@@ -11,6 +11,7 @@ import OrganizationsShowPage from './OrganizationsShowPage';
 import DonorDashboardPage from './DonorDashboardPage';
 import OrgDashboardPage from './OrgDashboardPage';
 import UpdateShowPage from './UpdateShowPage';
+import CampaignShowPage from './CampaignShowPage';
 
 class App extends Component {
 	constructor(props) {
@@ -150,6 +151,11 @@ class App extends Component {
 	        		isAuthenticated={this.isSignedIn()}
 	        		path="/updates/:id"
 	        		component={UpdateShowPage}
+	        	/>
+	        	<AuthRoute
+	        		isAuthenticated={this.isSignedIn()}
+	        		path="/campaigns/:id"
+	        		component={CampaignShowPage}
 	        	/>
 	        	<AuthRoute 
 	        		isAuthenticated={this.isSignedIn()}

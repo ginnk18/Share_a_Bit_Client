@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { fetchOrganization } from '../actions';
 import { Favourite, Donation } from '../lib/requests';
 import DonationToOrganizationForm from './DonationToOrganizationForm';
+import DonationToCampaignForm from './DonationToCampaignForm';
 
 class OrganizationsShowPage extends Component {
 	constructor(props) {
@@ -26,16 +27,14 @@ class OrganizationsShowPage extends Component {
 	}
 
 	renderCampaigns() {
-		// const style = {
-		// 	backgroundImage: 'url("/images/leaf.jpg")'
-		// }
 		return _.map(this.props.campaigns, campaign => {
+
 			return (
 				<div className="col-md-6" key={campaign.id}>
 					<div className="card campaign-item">
 						<div className="card-body">
 							<div className="card-title">{campaign.name}</div>
-							<button className="btn btn-success">Give to this campaign</button>
+							<Link to={`/campaigns/${campaign.id}`}>See Details</Link>
 						</div>
 					</div>
 				</div>
@@ -44,8 +43,6 @@ class OrganizationsShowPage extends Component {
 	}
 
 	favourite() {
-		// const id = this.props.org.id
-		// console.log(id)
 		Favourite
 			.create(this.props.org.id)
 			.then(data => {
@@ -124,7 +121,7 @@ class OrganizationsShowPage extends Component {
 					{this.renderCampaigns()}
 				</div>
 
-			{/*Modal for giving donate to Organization*/}
+			{/*Modal for giving credits to Organization*/}
 				<div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		          <div className="modal-dialog" role="document">
 		            <div className="modal-content">
@@ -151,7 +148,7 @@ class OrganizationsShowPage extends Component {
 }
 
 function mapStateToProps({ orgs }, ownProps) {
-	return { org: orgs[0], campaigns: orgs[1], userFavourite: orgs[2] }
+	return { org: orgs.organization, campaigns: orgs.campaigns, userFavourite: orgs.userFavourite }
 }
 
 export default connect(mapStateToProps, { fetchOrganization })(OrganizationsShowPage);

@@ -49,10 +49,13 @@ class DonorDashboardPage extends Component {
 	}
 
 	render() {
-		const {donor} = this.props;
-		const {favouriteOrgs} = this.props;
-		const {transactions} = this.props;
-		const {orgsDonatedTo} = this.props;
+		const { donor,
+				favouriteOrgs,
+				transactions,
+				orgsDonatedTo,
+				favouriteOrgCampaigns,
+				favouriteOrgUpdates 
+		} = this.props;
 
 		if (!donor && !favouriteOrgs && !transactions && !orgsDonatedTo) {
 			return <div>Loading your dashboard...</div>
@@ -61,6 +64,8 @@ class DonorDashboardPage extends Component {
 		eval(`$(function () {
   			$('[data-toggle="popover"]').popover()
 		})`)
+
+		// <Link onClick={this.clearModal} to={`/updates/${update.id}`}>{update.title}</Link>
 		
 		return(
 			<div className="DonorDashboardPage">
@@ -69,6 +74,13 @@ class DonorDashboardPage extends Component {
 			<div className="row donor-dashboard-row animated fadeInUpBig">
 				<div className="col-md-4">
 					<h5>Recent Updates from Your Organizations</h5>
+					<p><Link to={`/updates/${favouriteOrgUpdates[0][0].id}`}>{favouriteOrgUpdates[0][0].title}</Link></p>
+					<p><strong>Created by: </strong>{favouriteOrgs[0].name}</p>
+					<p><Link to={`/updates/${favouriteOrgUpdates[1][0].id}`}>{favouriteOrgUpdates[1][0].title}</Link></p>
+					<p><strong>Created by: </strong>{favouriteOrgs[1].name}</p>
+					<p><Link to={`/updates/${favouriteOrgUpdates[2][0].id}`}>{favouriteOrgUpdates[2][0].title}</Link></p>
+					<p><strong>Created by: </strong>{favouriteOrgs[2].name}</p>
+					<a href="#">Browse All Updates</a>
 				</div>
 				<div className="col-md-4">
 					<div className="row flex-column manage-credits">
@@ -90,8 +102,14 @@ class DonorDashboardPage extends Component {
 							If you have more questions please call 1-800-401-7890."
 						>What are credits and bitcredits?</a>
 					</div>
-					<div className="row manage-credits">
+					<div className="row manage-credits flex-column">
 						<h5>New Campaigns From Your Organizations</h5>
+						<p><a href="#">{favouriteOrgCampaigns[0].name}</a></p>
+						<p><strong>Created by: </strong>{favouriteOrgs[0].name}</p>
+						<p><a href="#">{favouriteOrgCampaigns[1].name}</a></p>
+						<p><strong>Created by: </strong>{favouriteOrgs[1].name}</p>
+						<p><a href="#">{favouriteOrgCampaigns[2].name}</a></p>
+						<p><strong>Created by: </strong>{favouriteOrgs[2].name}</p>
 					</div>
 				</div>
 				<div className="col-md-4">
@@ -119,7 +137,7 @@ class DonorDashboardPage extends Component {
 						>View all donation history</a>
 					</div>
 					<div className="recent-donations">
-						<h5>See what your favourite organizations are up to...</h5>
+						<h5>Your Favourite Organizations</h5>
 						<ul className="donorFavOrgs">{this._renderFavouriteOrgs()}</ul>
 					</div>
 				</div>
@@ -160,7 +178,16 @@ class DonorDashboardPage extends Component {
 }
 
 function mapStateToProps({ userDonor }) {
-	return { donor: userDonor.donor, favouriteOrgs: userDonor.favouriteOrgs, transactions: userDonor.transactions, orgsDonatedTo: userDonor.orgsDonatedTo }
+	if(userDonor) {
+		console.log('User Donor object from Redux Store in mapStateToProps: ', userDonor)
+	}
+	return { donor: userDonor.donor, 
+			 favouriteOrgs: userDonor.favouriteOrgs, 
+			 transactions: userDonor.transactions, 
+			 orgsDonatedTo: userDonor.orgsDonatedTo,
+			 favouriteOrgCampaigns: userDonor.favouriteOrgCampaigns,
+			 favouriteOrgUpdates: userDonor.favouriteOrgUpdates 
+			}
 }
 
 export default connect(mapStateToProps, { fetchDonor })(DonorDashboardPage);

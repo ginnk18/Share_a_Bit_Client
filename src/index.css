@@ -189,7 +189,7 @@ nav span {
 
 /*Styling Donation to Organization Form: */
 
-.DonationToOrganizationForm {
+.DonationToOrganizationForm, .DonationToCampaignForm {
   font-family: Verdana, Geneva, sans-serif;
 }
 
