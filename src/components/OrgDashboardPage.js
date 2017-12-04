@@ -106,6 +106,21 @@ class OrgDashboardPage extends Component {
 			);
 		})
 	}
+	
+	_renderCampaignsAndCredits() {
+		const { campaigns } = this.props;
+
+		return _.map(campaigns, campaign => {
+			return (
+				<tr key={campaign.id}>
+					<td>{campaign.name}</td>
+					<td>{campaign.credits}</td>
+					<td>{campaign.bitcredits}</td>
+					<td><button className="btn-success">Payout</button></td>
+				</tr>
+			);
+		})
+	}
 
 	clearModal() {
 		eval(`$('#updateIndex').modal("toggle")`); 
@@ -245,8 +260,13 @@ class OrgDashboardPage extends Component {
 						<div className="col-md-4">
 							<div className="row flex-column manage-credits">
 								<h5>Manage Your Credits</h5>
-								<p>Your Credits: {org.credits}</p>
-								<p>Your Bitcredits: {org.bitcredits}</p>
+								<p>Your General Credits: {org.credits}</p>
+								<p>Your General Bitcredits: {org.bitcredits}</p>
+								<a
+									href="#"
+									data-toggle="modal"
+									data-target="#campaignCredits"
+								>Manage Credits for Your Campaigns</a>
 								<button className="btn-success align-self-start">
 									Choose your Payout Method
 								</button>
@@ -367,12 +387,43 @@ class OrgDashboardPage extends Component {
 		          </div>
 		        </div>
 		      </div>
+
+		  {/*Modal for Managing Credits for Campaigns*/}
+			<div className="modal fade" id="campaignCredits" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		          <div className="modal-dialog" role="document">
+		            <div className="modal-content">
+		              <div className="modal-header">
+		                <h5 className="modal-title" id="campaignCreditsLabel">Manage Credits for Your Campaigns</h5>
+		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
+		                </button>
+		              </div>
+		            <div className="modal-body">
+		            	<table className="table table-striped table-bordered">
+		            		 <thead className="thead-dark">
+							    <tr>
+							      <th scope="col">Campaign</th>
+							      <th scope="col">Credits</th>
+							      <th scope="col">Bitcredits</th>
+							      <th scope="col"></th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  	{this._renderCampaignsAndCredits()}
+							  </tbody>
+		            	</table>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
 			</div>
 		);
 	}
 }
 
 function mapStateToProps({ userOrg }) {
+	if(userOrg) {
+		console.log('mapStateToProps data: ', userOrg);
+	}
 	return { org: userOrg.organization, 
 			 campaigns: userOrg.campaigns,
 			 updates: userOrg.updates, 
