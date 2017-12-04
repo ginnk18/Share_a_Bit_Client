@@ -43,30 +43,34 @@ class OrgDashboardPage extends Component {
 			let dateFormat = year + '-' + month + '-' + day;
 			count += 1;
 			return (
-				<li key={transaction.id} className="donation-history-list-item">
-				<span>${transaction.amount}</span>
-				<span>
-					<a href="#">
-					{this.props.donors[count].firstName} {this.props.donors[count].lastName}
-					</a></span>
-				<span>{dateFormat}</span>
-				</li>
+				<tr key={transaction.id}>
+					<td>${transaction.amount}</td>
+					<td>{transaction.type}</td>
+					<td><a href="#">{this.props.donors[count].firstName} {this.props.donors[count].lastName}</a></td>
+					<td>{dateFormat}</td>
+				</tr>
 			);
 		})
 	}
 
 	_renderRecentBenefactions() {
-		const {transactions} = this.props;
+		const {transactions, donors} = this.props;
 		const recentTransactions = [transactions[0], transactions[1], transactions[2]]
-
+		let count = -1;
 		return _.map(recentTransactions, transaction => {
 			const transactionDate = new Date(transaction.created_at)
 			let year = transactionDate.getFullYear()+"";
 			let month = (transactionDate.getMonth()+1)+"";
 			let day = transactionDate.getDate()+"";
 			let dateFormat = year + '-' + month + '-' + day;
+			count += 1;
 			return (
+				<div>
 				<p>You received ${transaction.amount} on {dateFormat}</p>
+				<p>From: <a href="#">{donors[count].firstName} {donors[count].lastName}</a>
+				<p>Type: {transaction.type}</p>
+				<button className="btn-success align-self-start ml-2">Send Thanks</button></p>
+				</div>
 			);
 		})
 	}
@@ -169,7 +173,7 @@ class OrgDashboardPage extends Component {
 						>What's this?</a>
 							</div>
 							<div className="row org-updates-section">
-								<h5>Your Most Recent Update</h5>
+								<h5>Your Recent Updates</h5>
 								{
 									updates[0]
 										? <h6><strong>{updates[0].title}</strong></h6>
@@ -180,7 +184,16 @@ class OrgDashboardPage extends Component {
 										? <p>{updates[0].overview.slice(0, 200)}...<Link to={`/updates/${updates[0].id}`}>See More</Link></p>
 										: <p>No recent updates</p>
 								}
-								
+								{
+									updates[1]
+										? <h6><strong>{updates[1].title}</strong></h6>
+										: <h6></h6>
+								}
+								{
+									updates[1]
+										? <p>{updates[1].overview.slice(0, 200)}...<Link to={`/updates/${updates[1].id}`}>See More</Link></p>
+										: <p></p>
+								}
 								<a 
 									href="#"
 									data-toggle="modal"
@@ -216,12 +229,12 @@ class OrgDashboardPage extends Component {
 							</div>
 							<div className="row most-freq-donors">
 								<h5>Your Most Frequent Donors</h5>
-								{/*<p><a href="#">{mostFreqDonors[0].firstName} {mostFreqDonors[0].lastName}</a> has donated {freqDonorTransactions[0].count} times.</p>
+								<p><a href="#">{mostFreqDonors[0].firstName} {mostFreqDonors[0].lastName}</a> has donated {freqDonorTransactions[0].count} times.</p>
 								<button className="btn-success mb-2">Send Recognition</button>
 								<p><a href="#">{mostFreqDonors[1].firstName} {mostFreqDonors[1].lastName}</a> has donated {freqDonorTransactions[1].count} times.</p>
 								<button className="btn-success mb-2">Send Recognition</button>
 								<p><a href="#">{mostFreqDonors[2].firstName} {mostFreqDonors[2].lastName}</a> has donated {freqDonorTransactions[2].count} times.</p>
-								<button className="btn-success mb-2">Send Recognition</button>*/}
+								<button className="btn-success mb-2">Send Recognition</button>
 								<a 
 									href="#"
 									data-toggle="modal"
@@ -241,14 +254,6 @@ class OrgDashboardPage extends Component {
 							<div className="row flex-column manage-donations">
 								<h5>Recent Benefactions</h5>
 								{this._renderRecentBenefactions()}
-								<h5>Recent Donors</h5>
-								<p><a href="#">{donors[0].firstName} {donors[0].lastName}</a> sent you ${transactions[0].amount}
-								<button className="btn-success align-self-start ml-2">Send Thanks</button></p>
-								<p><a href="#">{donors[1].firstName} {donors[1].lastName}</a> sent you ${transactions[1].amount}
-								<button className="btn-success align-self-start ml-2">Send Thanks</button></p>
-								<p><a href="#">{donors[2].firstName} {donors[2].lastName}</a> sent you ${transactions[2].amount}
-								<button className="btn-success align-self-start ml-2">Send Thanks</button></p>
-								
 								<a 
 									href="#"
 									data-toggle="modal"
@@ -323,14 +328,19 @@ class OrgDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<ul className="donation-history-list">
-		            		<li className="donation-history-header">
-		            			<span>Amount</span>
-		            			<span>Donor</span>
-		            			<span>Date</span>
-		            		</li>
-		            		{this._renderBenefactionHistory()}
-		            	</ul>
+		            	<table className="table table-striped table-bordered">
+		            		 <thead className="thead-dark">
+							    <tr>
+							      <th scope="col">Amount</th>
+							      <th scope="col">Type</th>
+							      <th scope="col">Donor</th>
+							      <th scope="col">Date</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  	{this._renderBenefactionHistory()}
+							  </tbody>
+		            	</table>
 		            </div>
 		          </div>
 		        </div>
@@ -347,7 +357,7 @@ class OrgDashboardPage extends Component {
 		              </div>
 		            <div className="modal-body">
 		            	<ul className="donation-history-list">
-		            		<li className="donation-history-header">
+		            		<li className="donor-frequency-header">
 		            			<span>Donor</span>
 		            			<span>Donated</span>
 		            		</li>

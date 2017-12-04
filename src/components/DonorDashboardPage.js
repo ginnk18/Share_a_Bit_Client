@@ -27,16 +27,6 @@ class DonorDashboardPage extends Component {
 			);
 		})
 	}
-	// bug - only the first org clicked on will go to the correct show page :S 
-	//then after the first one is clicked, all the other org links go to that first org
-	//show page until I reload the page :S :S :S :S
-
-	// <tr>
- //      <th scope="row">1</th>
- //      <td>Mark</td>
- //      <td>Otto</td>
- //      <td>@mdo</td>
- //    </tr>
 
 	_renderDonationHistory() {
 		let count = -1;
@@ -54,15 +44,6 @@ class DonorDashboardPage extends Component {
 					<td>{this.props.orgsDonatedTo[count].name}</td>
 					<td>{dateFormat}</td>
 				</tr>
-				// {<li
-				// 	key={transaction.id}
-				// 	className="donation-history-list-item"
-				// >
-				// <span>${transaction.amount}</span>
-				// <span>{transaction.type}</span>
-				// <span>{this.props.orgsDonatedTo[count].name}</span>
-				// <span>{dateFormat}</span>
-				// </li>}
 			);
 		})
 	}
@@ -168,15 +149,6 @@ class DonorDashboardPage extends Component {
 							  	{this._renderDonationHistory()}
 							  </tbody>
 		            	</table>
-		            	{/*<ul className="donation-history-list">
-		            		<li className="donation-history-header">
-		            			<span>Amount</span>
-		            			<span>Type</span>
-		            			<span>Organization</span>
-		            			<span>Date</span>
-		            		</li>
-		              		{this._renderDonationHistory()}
-		              	</ul>*/}
 		            </div>
 		          </div>
 		        </div>

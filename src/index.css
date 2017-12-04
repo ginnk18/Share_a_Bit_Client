@@ -207,10 +207,12 @@ nav span {
   font-family: 'Spectral SC', serif;
 }
 
-.update-index-header {
+.update-index-header, .donor-frequency-header {
   display: flex;
   font-weight: bold;
   justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /*Create Update form*/ 
