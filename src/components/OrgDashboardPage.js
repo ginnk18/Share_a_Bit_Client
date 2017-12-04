@@ -170,8 +170,17 @@ class OrgDashboardPage extends Component {
 							</div>
 							<div className="row org-updates-section">
 								<h5>Your Most Recent Update</h5>
-								<h6><strong>{updates[0].title}</strong></h6>
-								<p>{updates[0].overview.slice(0, 200)}...<Link to={`/updates/${updates[0].id}`}>See More</Link></p>
+								{
+									updates[0]
+										? <h6><strong>{updates[0].title}</strong></h6>
+										: <h6></h6>
+								}
+								{
+									updates[0]
+										? <p>{updates[0].overview.slice(0, 200)}...<Link to={`/updates/${updates[0].id}`}>See More</Link></p>
+										: <p>No recent updates</p>
+								}
+								
 								<a 
 									href="#"
 									data-toggle="modal"
@@ -207,12 +216,12 @@ class OrgDashboardPage extends Component {
 							</div>
 							<div className="row most-freq-donors">
 								<h5>Your Most Frequent Donors</h5>
-								<p><a href="#">{mostFreqDonors[0].firstName} {mostFreqDonors[0].lastName}</a> has donated {freqDonorTransactions[0].count} times.</p>
+								{/*<p><a href="#">{mostFreqDonors[0].firstName} {mostFreqDonors[0].lastName}</a> has donated {freqDonorTransactions[0].count} times.</p>
 								<button className="btn-success mb-2">Send Recognition</button>
 								<p><a href="#">{mostFreqDonors[1].firstName} {mostFreqDonors[1].lastName}</a> has donated {freqDonorTransactions[1].count} times.</p>
 								<button className="btn-success mb-2">Send Recognition</button>
 								<p><a href="#">{mostFreqDonors[2].firstName} {mostFreqDonors[2].lastName}</a> has donated {freqDonorTransactions[2].count} times.</p>
-								<button className="btn-success mb-2">Send Recognition</button>
+								<button className="btn-success mb-2">Send Recognition</button>*/}
 								<a 
 									href="#"
 									data-toggle="modal"

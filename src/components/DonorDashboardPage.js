@@ -31,6 +31,13 @@ class DonorDashboardPage extends Component {
 	//then after the first one is clicked, all the other org links go to that first org
 	//show page until I reload the page :S :S :S :S
 
+	// <tr>
+ //      <th scope="row">1</th>
+ //      <td>Mark</td>
+ //      <td>Otto</td>
+ //      <td>@mdo</td>
+ //    </tr>
+
 	_renderDonationHistory() {
 		let count = -1;
 		return _.map(this.props.transactions, transaction => {
@@ -41,14 +48,21 @@ class DonorDashboardPage extends Component {
 			let dateFormat = year + '-' + month + '-' + day;
 			count += 1;
 			return (
-				<li
-					key={transaction.id}
-					className="donation-history-list-item"
-				>
-				<span>${transaction.amount}</span>
-				<span>{this.props.orgsDonatedTo[count].name}</span>
-				<span>{dateFormat}</span>
-				</li>
+				<tr>
+					<td>${transaction.amount}</td>
+					<td>{transaction.type}</td>
+					<td>{this.props.orgsDonatedTo[count].name}</td>
+					<td>{dateFormat}</td>
+				</tr>
+				// {<li
+				// 	key={transaction.id}
+				// 	className="donation-history-list-item"
+				// >
+				// <span>${transaction.amount}</span>
+				// <span>{transaction.type}</span>
+				// <span>{this.props.orgsDonatedTo[count].name}</span>
+				// <span>{dateFormat}</span>
+				// </li>}
 			);
 		})
 	}
@@ -96,7 +110,7 @@ class DonorDashboardPage extends Component {
 						>What are credits and bitcredits?</a>
 					</div>
 					<div className="row manage-credits">
-						<h5>Browse our new Organizations</h5>
+						<h5>New Campaigns From Your Organizations</h5>
 					</div>
 				</div>
 				<div className="col-md-4">
@@ -141,14 +155,28 @@ class DonorDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<ul className="donation-history-list">
+		            	<table className="table table-striped table-bordered">
+		            		 <thead className="thead-dark">
+							    <tr>
+							      <th scope="col">Amount</th>
+							      <th scope="col">Type</th>
+							      <th scope="col">Organization</th>
+							      <th scope="col">Date</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  	{this._renderDonationHistory()}
+							  </tbody>
+		            	</table>
+		            	{/*<ul className="donation-history-list">
 		            		<li className="donation-history-header">
 		            			<span>Amount</span>
+		            			<span>Type</span>
 		            			<span>Organization</span>
 		            			<span>Date</span>
 		            		</li>
 		              		{this._renderDonationHistory()}
-		              	</ul>
+		              	</ul>*/}
 		            </div>
 		          </div>
 		        </div>

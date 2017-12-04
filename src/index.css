@@ -183,6 +183,10 @@ nav span {
   border-bottom: 1px solid black;
 }
 
+.table {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 /*Styling Donation to Organization Form: */
 
 .DonationToOrganizationForm {
@@ -201,6 +205,12 @@ nav span {
 
 .org-dashboard-row h5 {
   font-family: 'Spectral SC', serif;
+}
+
+.update-index-header {
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
 }
 
 /*Create Update form*/ 
