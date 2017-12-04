@@ -239,6 +239,16 @@ nav span {
   justify-content: center;
 }
 
+/*Styling Campaign Show Page*/
+
+.campaign-created-on {
+  padding-bottom: 200px;
+}
+
+.CampaignShowPage .btn {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 /*Styling footer */
 
 .footer {

@@ -5,6 +5,7 @@ export const FETCH_ORGANIZATION = 'fetch_organization';
 export const FETCH_DONOR = 'fetch_donor';
 export const FETCH_ORGUSER = 'fetch_orguser';
 export const FETCH_UPDATE = 'fetch_update';
+export const FETCH_CAMPAIGN = 'fetch_campaign';
 
 const ROOT_URL = 'http://localhost:3000/api';
 
@@ -75,9 +76,20 @@ export function fetchUpdate(id) {
 						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
 					}
 					);
-	console.log('Request from fetchUpdate action: ', request)
 	return {
 		type: FETCH_UPDATE,
+		payload: request
+	}
+}
+
+export function fetchCampaign(id) {
+	const request = axios.get(`${ROOT_URL}/campaigns/${id}`,
+					{
+						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
+					}
+					);
+	return {
+		type: FETCH_CAMPAIGN,
 		payload: request
 	}
 }

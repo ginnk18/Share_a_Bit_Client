@@ -25,7 +25,7 @@ class UpdateShowPage extends Component {
 			let year = updateDate.getFullYear()+"";
 			let month = (updateDate.getMonth()+1)+"";
 			let day = updateDate.getDate()+"";
-			let dateFormat = year + '-' + month + '-' + day;
+			let dateFormat = month + '-' + day + '-' + year;
 
 		return (
 			<div className="UpdateShowPage container">

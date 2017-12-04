@@ -60,6 +60,24 @@ export const Donation = {
 				return {error: 'You do not have enough credits to make that donation.'};
 			}
 		})
+	},
+
+	donationToCampaign(campaignId, orgId, params) {
+		return fetch(
+			`${ROOT_URL}/campaigns/${campaignId}/donate/${orgId}`,
+			{
+				method: 'POST',
+				headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'},
+				body: JSON.stringify(params)
+			}
+		).then(res => {
+			if(res.status === 200) {
+				eval(`$('#campaignDonationModal').modal("toggle")`);
+				return res.json();
+			} else {
+				return {error: 'You do not have enough credits to make that donation.'}
+			}
+		})
 	}
 }
 

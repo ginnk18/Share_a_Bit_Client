@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { fetchOrganization } from '../actions';
 import { Favourite, Donation } from '../lib/requests';
 import DonationToOrganizationForm from './DonationToOrganizationForm';
-import DonationToCampaignForm from './DonationToCampaignForm';
 
 class OrganizationsShowPage extends Component {
 	constructor(props) {
@@ -116,10 +115,12 @@ class OrganizationsShowPage extends Component {
 						Give to {org.name}
 					</button>
 				</div>
-				<h3><strong>Current Campaigns</strong></h3>
+				<h3 className="animated bounceInUp"><strong>Current Campaigns</strong></h3>
 				<div className="row animated bounceInUp">
 					{this.renderCampaigns()}
 				</div>
+
+				<h3 className="mt-4 animated bounceInUp"><strong>Updates from {org.name}</strong></h3>
 
 			{/*Modal for giving credits to Organization*/}
 				<div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
