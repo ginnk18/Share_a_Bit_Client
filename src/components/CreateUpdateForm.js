@@ -20,7 +20,7 @@ export default function CreateUpdateForm(props) {
 				<div><label><strong>Title</strong></label></div>
 				<input className="form-control" type="text" id="title" name="title" />
 				<div><label><strong>Overview</strong></label></div>
-				<textarea className="form-control" id="overview" cols="50" rows="50" name="overview"></textarea>
+				<textarea className="form-control" id="overview" cols="50" rows="30" name="overview"></textarea>
 				<div style={{marginTop: '5px'}}>
 					<input type="submit" value="Submit" className="btn-success pull-right" />
 				</div>

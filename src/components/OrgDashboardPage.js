@@ -4,6 +4,7 @@ import { fetchOrgUser } from '../actions';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import CreateUpdateForm from './CreateUpdateForm';
+import CreateCampaignForm from './CreateCampaignForm';
 import { Organization } from '../lib/requests';
 
 class OrgDashboardPage extends Component {
@@ -15,6 +16,7 @@ class OrgDashboardPage extends Component {
 		}
 
 		this.createUpdate = this.createUpdate.bind(this);
+		this.createCampaign = this.createCampaign.bind(this);
 	}
 
 	_renderFlashMessage() {
@@ -97,10 +99,28 @@ class OrgDashboardPage extends Component {
 			let year = updateDate.getFullYear()+"";
 			let month = (updateDate.getMonth()+1)+"";
 			let day = updateDate.getDate()+"";
-			let dateFormat = year + '-' + month + '-' + day;
+			let dateFormat = month + '-' + day + '-' + year;
 			return (
 				<li className="donation-history-list-item">
-					<span><Link onClick={this.clearModal} to={`/updates/${update.id}`}>{update.title}</Link></span>
+					<span><Link onClick={this.clearUIModal} to={`/updates/${update.id}`}>{update.title}</Link></span>
+					<span>{dateFormat}</span>
+				</li>
+			);
+		})
+	}
+
+	_renderCampaignIndex() {
+		const { campaigns } = this.props;
+
+		return _.map(campaigns, campaign => {
+			const campaignDate = new Date(campaign.created_at)
+			let year = campaignDate.getFullYear()+"";
+			let month = (campaignDate.getMonth()+1)+"";
+			let day = campaignDate.getDate()+"";
+			let dateFormat = month + '-' + day + '-' + year;
+			return (
+				<li className="donation-history-list-item">
+					<span><Link onClick={this.clearCIModal} to={`/campaigns/${campaign.id}`}>{campaign.name}</Link></span>
 					<span>{dateFormat}</span>
 				</li>
 			);
@@ -122,8 +142,12 @@ class OrgDashboardPage extends Component {
 		})
 	}
 
-	clearModal() {
+	clearUIModal() {
 		eval(`$('#updateIndex').modal("toggle")`); 
+	}
+
+	clearCIModal() {
+		eval(`$('#campaignIndex').modal("toggle")`); 
 	}
 
 	createUpdate(params) {
@@ -132,6 +156,21 @@ class OrgDashboardPage extends Component {
 			.then(data => {
 				if(!data.error) {
 					this.setState({flash: 'Update Created!'})
+					setTimeout(() => {
+						this.clearFlash()
+					}, 3000)
+				} else {
+					this.setState({flash: data.error})
+				}
+			})
+	}
+
+	createCampaign(params) {
+		Organization
+			.createCampaign(params)
+			.then(data => {
+				if(!data.error) {
+					this.setState({flash: 'Campaign created!'})
 					setTimeout(() => {
 						this.clearFlash()
 					}, 3000)
@@ -238,9 +277,15 @@ class OrgDashboardPage extends Component {
 						>What's this?</a>
 							</div>
 							<div className="row org-campaigns-section">
-								<h5>Your Most Recent/Popular Campaign</h5>
+								<h5>Your Newest Campaign</h5>
 								<p>{campaigns[0].name}</p>
-								<a href="#">View All Your Campaigns</a>
+								<h5>Your Most Popular Campaign</h5>
+								<p></p>
+								<a 
+									href="#"
+									data-toggle="modal"
+									data-target="#campaignIndex"
+								>View All Your Campaigns</a>
 							</div>
 							<div className="row most-freq-donors">
 								<h5>Your Most Frequent Donors</h5>
@@ -286,7 +331,7 @@ class OrgDashboardPage extends Component {
 
 			{/*Modal for Creating a New Campaign*/}
 			<div className="modal fade" id="createCampaign" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		          <div className="modal-dialog" role="document">
+		          <div className="modal-dialog modal-lg" role="document">
 		            <div className="modal-content">
 		              <div className="modal-header">
 		                <h5 className="modal-title" id="createCampaignLabel">Create a New Campaign</h5>
@@ -294,7 +339,29 @@ class OrgDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<h1>Successfully inside modal!</h1>
+		            	<CreateCampaignForm onSubmit={this.createCampaign} />
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+
+		  		{/*Modal For Campaign Index List*/}
+		      <div className="modal fade" id="campaignIndex" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		          <div className="modal-dialog" role="document">
+		            <div className="modal-content">
+		              <div className="modal-header">
+		                <h5 className="modal-title" id="campaignIndexLabel">Your Campaigns</h5>
+		                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
+		                </button>
+		              </div>
+		            <div className="modal-body">
+		            	<ul className="donation-history-list">
+		            		<li className="update-index-header">
+		            			<span>Name</span>
+		            			<span>Date Created</span>
+		            		</li>
+		            		{this._renderCampaignIndex()}
+		            	</ul>
 		            </div>
 		          </div>
 		        </div>
@@ -302,7 +369,7 @@ class OrgDashboardPage extends Component {
 
 		  	{/*Modal For Creating a New Update*/}
 		      <div className="modal fade" id="createUpdate" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		          <div className="modal-dialog" role="document">
+		          <div className="modal-dialog modal-lg" role="document">
 		            <div className="modal-content">
 		              <div className="modal-header">
 		                <h5 className="modal-title" id="createUpdateLabel">Update Your Donors on What You're Doing with their Contributions</h5>

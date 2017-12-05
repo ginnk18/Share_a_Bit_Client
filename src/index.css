@@ -187,6 +187,14 @@ nav span {
   font-family: Verdana, Geneva, sans-serif;
 }
 
+.recent-update-item {
+  /*border-left: 2px #1C5217 solid;*/
+  border-bottom: 2px #1C5217 solid;
+  /*border-radius: 5px;*/
+  margin: 5px;
+  padding: 5px;
+}
+
 /*Styling Donation to Organization Form: */
 
 .DonationToOrganizationForm, .DonationToCampaignForm {

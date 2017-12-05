@@ -98,5 +98,23 @@ export const Organization = {
 				return {error: 'Unable to create update.'}
 			}
 		})
+	},
+
+	createCampaign(params) {
+		return fetch(
+			`${ROOT_URL}/campaigns`,
+			{
+				method: 'POST',
+				headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'},
+				body: JSON.stringify(params)
+			}
+		).then(res => {
+			if(res.status === 200) {
+				eval(`$('#createCampaign').modal("toggle")`);
+				return res.json();
+			} else {
+				return {error: 'Unable to create campaign.'}
+			}
+		})
 	}
 }
