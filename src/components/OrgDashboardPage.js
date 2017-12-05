@@ -71,7 +71,13 @@ class OrgDashboardPage extends Component {
 				<p>You received ${transaction.amount} on {dateFormat}</p>
 				<p>From: <a href="#">{donors[count].firstName} {donors[count].lastName}</a>
 				<p>Type: {transaction.type}</p>
-				<button className="btn-success align-self-start ml-2">Send Thanks</button></p>
+				<button 
+					id="sendThanksButton"
+					className="btn-success align-self-start ml-2"
+					data-toggle="modal"
+					data-target="#sendThanksMessage"
+					data-id={donors[count].id}
+				>Send Thanks</button></p>
 				</div>
 			);
 		})
@@ -182,6 +188,15 @@ class OrgDashboardPage extends Component {
 			})
 	}
 
+	sendThanksSubmit(event) {
+		event.preventDefault()
+		const {currentTarget} = event;
+		const fData = new FormData(currentTarget);
+		console.log('Subject: ', fData.get('subject'));
+		console.log('Body: ', fData.get('body'));
+		console.log('Donor ID: ', fData.get('donorId'));
+	}
+
 	render() {
 		const { org, 
 				campaigns,
@@ -200,6 +215,10 @@ class OrgDashboardPage extends Component {
 		eval(`$(function () {
   			$('[data-toggle="popover"]').popover()
 		})`)
+
+		eval(`$("#sendThanksButton").click(function(){
+     		$('#donorId').val($(this).data('id'));
+ 		})`);
 
 		return(
 			<div className="OrgDashboardPage">
@@ -303,7 +322,7 @@ class OrgDashboardPage extends Component {
 									href="#"
 									data-toggle="modal"
 									data-target="#FreqDonorList"
-								>View Donor List by Frequency of Donations</a>
+								>Donors by Donation Frequency</a>
 							</div>
 						</div>
 						<div className="col-md-4">
@@ -327,7 +346,7 @@ class OrgDashboardPage extends Component {
 									href="#"
 									data-toggle="modal"
 									data-target="#benefactionHistory"
-								>View all Benefactions and Donors</a>
+								>View all Benefactions</a>
 							</div>
 						</div>
 					</div>
@@ -424,7 +443,7 @@ class OrgDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<table className="table table-striped table-bordered">
+		            	<table className="table table-striped table-bordered table-sm">
 		            		 <thead className="thead-dark">
 							    <tr>
 							      <th scope="col">Amount</th>
@@ -496,6 +515,33 @@ class OrgDashboardPage extends Component {
 		          </div>
 		        </div>
 		      </div>
+
+		      	{/*Modal for Sending Thank You Messages*/}
+				<div className="modal fade" id="sendThanksMessage" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			          <div className="modal-dialog" role="document">
+			            <div className="modal-content">
+			              <div className="modal-header">
+			                <h5 className="modal-title" id="sendThanksMessageLabel">Send Thanks</h5>
+			                <button type="button" className="close" data-dismiss="modal" aria-label="Close">&times;
+			                </button>
+			              </div>
+			            <div className="modal-body">
+			            	<form onSubmit={this.sendThanksSubmit} className="form-group form-create-update">
+								<div><label><strong>Subject</strong></label></div>
+								<input className="form-control" type="text" id="subject" name="subject" placeholder="Thank you!" />
+								<div><label><strong>Body</strong></label></div>
+								<textarea className="form-control" id="body" name="body">
+									Thanks for your recent donation!
+								</textarea>
+								<input type="hidden" name="donorId" id="donorId" value="" />
+								<div style={{marginTop: '5px'}}>
+									<input type="submit" value="Submit" className="btn-success pull-right" />
+								</div>
+							</form>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
 			</div>
 		);
 	}

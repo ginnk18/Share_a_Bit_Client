@@ -116,5 +116,9 @@ export const Organization = {
 				return {error: 'Unable to create campaign.'}
 			}
 		})
+	},
+
+	sendThanks(params) {
+		
 	}
 }
