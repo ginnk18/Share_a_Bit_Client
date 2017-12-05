@@ -83,10 +83,11 @@ class OrgDashboardPage extends Component {
 		return _.map(mostFreqDonors, mostFreqDonor => {
 			count += 1;
 			return (
-				<li className="donation-history-list-item">
-					<span><a href="#">{mostFreqDonor.firstName} {mostFreqDonor.lastName}</a></span>
-					<span>{freqDonorTransactions[count].count} times</span>
-				</li>
+				<tr key={mostFreqDonor.id}>
+					<td><a href="#">{mostFreqDonor.firstName} {mostFreqDonor.lastName}</a></td>
+					<td>${freqDonorTransactions[count].sum}</td>
+					<td>{freqDonorTransactions[count].count}</td>
+				</tr>
 			);
 		})
 	}
@@ -119,10 +120,11 @@ class OrgDashboardPage extends Component {
 			let day = campaignDate.getDate()+"";
 			let dateFormat = month + '-' + day + '-' + year;
 			return (
-				<li className="donation-history-list-item">
-					<span><Link onClick={this.clearCIModal} to={`/campaigns/${campaign.id}`}>{campaign.name}</Link></span>
-					<span>{dateFormat}</span>
-				</li>
+				<tr key={campaign.id}>
+					<td><Link onClick={this.clearCIModal} to={`/campaigns/${campaign.id}`}>{campaign.name}</Link></td>
+					<td>{campaign.total_credits}</td>
+					<td>{dateFormat}</td>
+				</tr>
 			);
 		})
 	}
@@ -187,7 +189,8 @@ class OrgDashboardPage extends Component {
 				transactions, 
 				donors,
 				freqDonorTransactions,
-				mostFreqDonors 
+				mostFreqDonors,
+				mostPopCampaign 
 			} = this.props;
 
 		if (!org) {
@@ -276,11 +279,12 @@ class OrgDashboardPage extends Component {
 							respect the wishes of your donors."
 						>What's this?</a>
 							</div>
-							<div className="row org-campaigns-section">
+							<div className="row org-campaigns-section flex-column">
 								<h5>Your Newest Campaign</h5>
-								<p>{campaigns[0].name}</p>
+								<p><Link to={`/campaigns/${campaigns[0].id}`}>{campaigns[0].name}</Link></p>
 								<h5>Your Most Popular Campaign</h5>
-								<p></p>
+								<p><Link to={`/campaigns/${mostPopCampaign[0].id}`}>{mostPopCampaign[0].name}</Link></p>
+								<p><em><strong>Total Credits:</strong> {mostPopCampaign[0].total_credits}</em></p>
 								<a 
 									href="#"
 									data-toggle="modal"
@@ -355,13 +359,18 @@ class OrgDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<ul className="donation-history-list">
-		            		<li className="update-index-header">
-		            			<span>Name</span>
-		            			<span>Date Created</span>
-		            		</li>
-		            		{this._renderCampaignIndex()}
-		            	</ul>
+		            	<table className="table table-striped table-bordered">
+		            		 <thead className="thead-dark">
+							    <tr>
+							      <th scope="col">Name</th>
+							      <th scope="col">Total Credits</th>
+							      <th scope="col">Date Created</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  	{this._renderCampaignIndex()}
+							  </tbody>
+		            	</table>
 		            </div>
 		          </div>
 		        </div>
@@ -443,13 +452,18 @@ class OrgDashboardPage extends Component {
 		                </button>
 		              </div>
 		            <div className="modal-body">
-		            	<ul className="donation-history-list">
-		            		<li className="donor-frequency-header">
-		            			<span>Donor</span>
-		            			<span>Donated</span>
-		            		</li>
-		            		{this._renderFreqDonorList()}
-		            	</ul>
+		            	<table className="table table-striped table-bordered">
+		            		<thead className="thead-dark">
+		            			<tr>
+		            				<th scope="col">Donor</th>
+		            				<th scope="col">Sum of Donations</th>
+		            				<th scope="col">Frequency of Donations</th>
+		            			</tr>
+		            		</thead>
+		            		<tbody>
+		            			{this._renderFreqDonorList()}
+		            		</tbody>
+		            	</table>
 		            </div>
 		          </div>
 		        </div>
@@ -497,7 +511,8 @@ function mapStateToProps({ userOrg }) {
 			 transactions: userOrg.transactions,
 			 donors: userOrg.donors,
 			 freqDonorTransactions: userOrg.freqDonorTransactions,
-			 mostFreqDonors: userOrg.mostFreqDonors }
+			 mostFreqDonors: userOrg.mostFreqDonors,
+			 mostPopCampaign: userOrg.mostPopCampaign }
 }
 
 export default connect(mapStateToProps, { fetchOrgUser })(OrgDashboardPage);
