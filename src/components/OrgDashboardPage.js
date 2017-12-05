@@ -40,7 +40,7 @@ class OrgDashboardPage extends Component {
 			let year = transactionDate.getFullYear()+"";
 			let month = (transactionDate.getMonth()+1)+"";
 			let day = transactionDate.getDate()+"";
-			let dateFormat = year + '-' + month + '-' + day;
+			let dateFormat = month + '-' + day + '-' + year;
 			count += 1;
 			return (
 				<tr key={transaction.id}>

@@ -45,8 +45,6 @@ export function fetchDonor(id) {
 	}
 }
 
-//not effing working:
-
 export async function fetchOrgUser(id) {
 	const request = await axios.get(`${ROOT_URL}/users/organization/${id}`)
 	return {
@@ -61,9 +59,10 @@ export function handleToken(token) {
 	const request = axios.post(`${ROOT_URL}/stripe`,
 					token,
 					{
-						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
-					}
-					);
+						headers: {
+							'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'
+						}
+					});
 	return {
 		type: FETCH_DONOR,
 		payload: request

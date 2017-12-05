@@ -74,12 +74,18 @@ class DonorDashboardPage extends Component {
 			<div className="row donor-dashboard-row animated fadeInUpBig">
 				<div className="col-md-4">
 					<h5>Recent Updates from Your Organizations</h5>
-					<p><Link to={`/updates/${favouriteOrgUpdates[0][0].id}`}>{favouriteOrgUpdates[0][0].title}</Link></p>
+					<p><strong>{favouriteOrgUpdates[0][0].title}</strong></p>
+					<p>{favouriteOrgUpdates[0][0].overview.slice(0, 100)}...<Link to={`/updates/${favouriteOrgUpdates[0][0].id}`}>See More</Link></p>
 					<p><strong>Created by: </strong>{favouriteOrgs[0].name}</p>
-					<p><Link to={`/updates/${favouriteOrgUpdates[1][0].id}`}>{favouriteOrgUpdates[1][0].title}</Link></p>
+
+					<p><strong>{favouriteOrgUpdates[1][0].title}</strong></p>
+					<p>{favouriteOrgUpdates[1][0].overview.slice(0, 100)}...<Link to={`/updates/${favouriteOrgUpdates[1][0].id}`}>See More</Link></p>
 					<p><strong>Created by: </strong>{favouriteOrgs[1].name}</p>
-					<p><Link to={`/updates/${favouriteOrgUpdates[2][0].id}`}>{favouriteOrgUpdates[2][0].title}</Link></p>
+
+					<p><strong>{favouriteOrgUpdates[2][0].title}</strong></p>
+					<p>{favouriteOrgUpdates[2][0].overview.slice(0, 100)}...<Link to={`/updates/${favouriteOrgUpdates[2][0].id}`}>See More</Link></p>
 					<p><strong>Created by: </strong>{favouriteOrgs[2].name}</p>
+
 					<a href="#">Browse All Updates</a>
 				</div>
 				<div className="col-md-4">

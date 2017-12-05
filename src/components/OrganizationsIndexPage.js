@@ -56,8 +56,8 @@ class OrganizationsIndexPage extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return { orgs: state.orgs }
+function mapStateToProps({ orgs }) {
+	return { orgs: orgs }
 }
 
 export default connect(mapStateToProps, { fetchOrganizations })(OrganizationsIndexPage);
