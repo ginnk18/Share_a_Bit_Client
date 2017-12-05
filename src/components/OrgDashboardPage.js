@@ -231,23 +231,6 @@ class OrgDashboardPage extends Component {
 				<div className="container">
 					<div className="row org-dashboard-row animated fadeInUpBig">
 						<div className="col-md-4">
-							<div className="row justify-content-center create-an-update">
-								<button 
-									className="btn btn-success"
-									data-toggle="modal"
-									data-target="#createUpdate"
-								>Create an Update</button>
-								<a
-							className="what-are-credits" 
-							href="#"
-							data-toggle="popover"
-							data-placement="bottom"
-							title="Updates"
-							data-content="In order to help donors feel informed on how their money is being spent, Share
-							a Bit asks that you post updates every once in a while with expense breakdowns and news about
-							your successes and goals."
-						>What's this?</a>
-							</div>
 							<div className="row org-updates-section">
 								<h5>Your Recent Updates</h5>
 								{
@@ -270,6 +253,23 @@ class OrgDashboardPage extends Component {
 										? <p>{updates[1].overview.slice(0, 200)}...<Link to={`/updates/${updates[1].id}`}>See More</Link></p>
 										: <p></p>
 								}
+							<div className="row justify-content-center create-an-update">
+								<button 
+									className="btn-success"
+									data-toggle="modal"
+									data-target="#createUpdate"
+								>Create an Update</button>
+								<a
+							className="what-are-credits" 
+							href="#"
+							data-toggle="popover"
+							data-placement="bottom"
+							title="Updates"
+							data-content="In order to help donors feel informed on how their money is being spent, Share
+							a Bit asks that you post updates every once in a while with expense breakdowns and news about
+							your successes and goals."
+						>What's this?</a>
+							</div>
 								<a 
 									href="#"
 									data-toggle="modal"
@@ -278,9 +278,13 @@ class OrgDashboardPage extends Component {
 							</div>
 						</div>
 						<div className="col-md-4">
-							<div className="row justify-content-center create-an-update">
+							<div className="row org-campaigns-section flex-column">
+								<h5>Your Most Popular Campaign</h5>
+								<p><Link to={`/campaigns/${mostPopCampaign[0].id}`}>{mostPopCampaign[0].name}</Link></p>
+								<p><em><strong>Total Credits:</strong> {mostPopCampaign[0].total_credits}</em></p>
+							<div className="row create-an-update">
 								<button 
-									className="btn btn-success"
+									className="btn-success"
 									data-toggle="modal" 
 									data-target="#createCampaign"
 								>
@@ -298,12 +302,6 @@ class OrgDashboardPage extends Component {
 							respect the wishes of your donors."
 						>What's this?</a>
 							</div>
-							<div className="row org-campaigns-section flex-column">
-								<h5>Your Newest Campaign</h5>
-								<p><Link to={`/campaigns/${campaigns[0].id}`}>{campaigns[0].name}</Link></p>
-								<h5>Your Most Popular Campaign</h5>
-								<p><Link to={`/campaigns/${mostPopCampaign[0].id}`}>{mostPopCampaign[0].name}</Link></p>
-								<p><em><strong>Total Credits:</strong> {mostPopCampaign[0].total_credits}</em></p>
 								<a 
 									href="#"
 									data-toggle="modal"

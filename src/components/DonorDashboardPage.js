@@ -74,7 +74,7 @@ class DonorDashboardPage extends Component {
 			<div className="row donor-dashboard-row animated fadeInUpBig">
 				<div className="col-md-4">
 					<h5>Recent Updates from Your Organizations</h5>
-					{/*<div className="recent-update-item">
+					<div className="recent-update-item">
 					  <p><strong>{favouriteOrgUpdates[0][0].title}</strong></p>
 					  <p>{favouriteOrgUpdates[0][0].overview.slice(0, 100)}...<Link to={`/updates/${favouriteOrgUpdates[0][0].id}`}>See More</Link></p>
 					  <p><strong>Created by: </strong>{favouriteOrgs[0].name}</p>
@@ -88,7 +88,7 @@ class DonorDashboardPage extends Component {
 					  <p><strong>{favouriteOrgUpdates[2][0].title}</strong></p>
 					  <p>{favouriteOrgUpdates[2][0].overview.slice(0, 100)}...<Link to={`/updates/${favouriteOrgUpdates[2][0].id}`}>See More</Link></p>
 					  <p><strong>Created by: </strong>{favouriteOrgs[2].name}</p>
-					</div>*/}
+					</div>
 					<a href="#">Browse All Updates</a>
 				</div>
 				<div className="col-md-4">
@@ -113,12 +113,12 @@ class DonorDashboardPage extends Component {
 					</div>
 					<div className="row manage-credits flex-column">
 						<h5>New Campaigns From Your Organizations</h5>
-						{/*<p><a href="#">{favouriteOrgCampaigns[0].name}</a></p>
+						<p><a href="#">{favouriteOrgCampaigns[0].name}</a></p>
 						<p><strong>Created by: </strong>{favouriteOrgs[0].name}</p>
 						<p><a href="#">{favouriteOrgCampaigns[1].name}</a></p>
 						<p><strong>Created by: </strong>{favouriteOrgs[1].name}</p>
 						<p><a href="#">{favouriteOrgCampaigns[2].name}</a></p>
-						<p><strong>Created by: </strong>{favouriteOrgs[2].name}</p>*/}
+						<p><strong>Created by: </strong>{favouriteOrgs[2].name}</p>
 					</div>
 				</div>
 				<div className="col-md-4">
