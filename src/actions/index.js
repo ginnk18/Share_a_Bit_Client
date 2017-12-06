@@ -16,9 +16,9 @@ function getJwt() {
 export function fetchOrganizations() {
 	const request = axios.get(`${ROOT_URL}/organizations`,
 					{
-						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
-					}
-					);
+						headers: {'Authorization': `${getJwt()}`, 
+						'Content-Type': 'application/json'}
+					});
 	return {
 		type: FETCH_ORGANIZATIONS,
 		payload: request
@@ -28,9 +28,9 @@ export function fetchOrganizations() {
 export function fetchOrganization(id) {
 	const request = axios.get(`${ROOT_URL}/organizations/${id}`,
 					{
-						headers: {'Authorization': `${getJwt()}`, 'Content-Type': 'application/json'}
-					}
-					)
+						headers: {'Authorization': `${getJwt()}`, 
+						'Content-Type': 'application/json'}
+					});
 	return {
 		type: FETCH_ORGANIZATION,
 		payload: request

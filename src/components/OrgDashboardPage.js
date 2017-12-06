@@ -514,7 +514,7 @@ class OrgDashboardPage extends Component {
 		        </div>
 		      </div>
 
-		      	{/*Modal for Sending Thank You Messages*/}
+		   {/*Modal for Sending Thank You Messages*/}
 				<div className="modal fade" id="sendThanksMessage" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			          <div className="modal-dialog" role="document">
 			            <div className="modal-content">
